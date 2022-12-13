@@ -1,16 +1,15 @@
-# sixx_tattoo
+# Sixx Tattoo
 
-A new Flutter project.
+A Flutter project I'm trying to write as I'm studying application developement..
+We do not study/learn Flutter so I'm "on my own" here, but it's great fun!
 
-## Getting Started
+## About:
 
-This project is a starting point for a Flutter application.
+This project is supposed to be for a Tattoo studio, mainly as an adaptive webpage
+It'll probably be a mess at first but I'll try refactor as I go..
 
-A few resources to get you started if this is your first Flutter project:
+## "Big" things to be implemented:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Firebase as backend to take care of images/gallery & booking
+- Swish integration for payment, there'll be a refundable booking fee
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
