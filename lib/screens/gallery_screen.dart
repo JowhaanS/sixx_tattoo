@@ -1,3 +1,4 @@
+import 'package:booking_calendar/booking_calendar.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/background_image.dart';
@@ -11,15 +12,6 @@ class GalleryScreen extends StatelessWidget {
       Container(
         decoration: BackgroundImage(isTransparent: true).backgroundDecoration(),
       ),
-      const Center(
-        child: Text(
-          'GALLERI',
-          style: TextStyle(
-            color: Color.fromARGB(255, 218, 229, 221),
-            fontSize: 36,
-          ),
-        ),
-      )
     ]);
   }
 }
