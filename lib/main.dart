@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
+import 'cubits/auth_cubit/auth_cubit.dart';
 import 'screens/landing_screen.dart';
 
 void main() async {
@@ -20,9 +22,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Sixx Tattoo',
-      home: LandingScreen(),
+    return BlocProvider(
+      create: (context) => AuthCubit(),
+      child: const MaterialApp(
+        title: 'Sixx Tattoo',
+        home: LandingScreen(),
+      ),
     );
   }
 }
