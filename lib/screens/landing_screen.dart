@@ -6,6 +6,7 @@ import 'package:sixx_tattoo/widgets/mobile/custom_tab_bar.dart';
 
 import '../screens/home_screen.dart';
 import '../widgets/web/custom_nav_rail.dart';
+import '../cubits/auth_cubit/auth_cubit.dart';
 import '../cubits/navigation_cubit/navigation_cubit.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -15,6 +16,7 @@ class LandingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<AuthCubit>(context).authenticate();
     return Scaffold(
       body: BlocProvider(
           create: (context) => NavigationCubit(),
