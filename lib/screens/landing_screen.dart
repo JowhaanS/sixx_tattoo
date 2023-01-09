@@ -6,7 +6,7 @@ import 'package:sixx_tattoo/screens/gallery_screen.dart';
 import 'package:sixx_tattoo/screens/login_screen.dart';
 import 'package:sixx_tattoo/widgets/mobile/custom_tab_bar.dart';
 
-import '../screens/home_screen.dart';
+import 'home_screen.dart';
 import '../widgets/web/custom_nav_rail.dart';
 import '../cubits/auth_cubit/auth_cubit.dart';
 import '../cubits/navigation_cubit/navigation_cubit.dart';

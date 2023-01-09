@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubits/navigation_cubit/navigation_cubit.dart';
-import '../../cubits/auth_cubit/auth_cubit.dart';
 import '../../app/constants.dart';
+import '../../cubits/auth_cubit/auth_cubit.dart';
+import '../../cubits/navigation_cubit/navigation_cubit.dart';
 
 class CustomTabBar extends StatefulWidget {
   const CustomTabBar({super.key});

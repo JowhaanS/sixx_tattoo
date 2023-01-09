@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../app/constants.dart';
+import '../../custom_icon_icons.dart';
 import '../../cubits/auth_cubit/auth_cubit.dart';
 import '../../cubits/navigation_cubit/navigation_cubit.dart';
-import 'package:sixx_tattoo/custom_icon_icons.dart';
-import '../../app/constants.dart';
 
 class CustomNavRail extends StatefulWidget {
   const CustomNavRail({
@@ -74,7 +74,7 @@ class _CustomNavRailState extends State<CustomNavRail> {
                 ),
                 label: Text('Book'),
               ),
-              if (state is AuthNotAuthenticated)
+              if (state is AuthAuthenticated)
                 const NavigationRailDestination(
                   icon: Icon(
                     Icons.add_a_photo_outlined,

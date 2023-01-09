@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/background_image.dart';
+
 class AddPictureScreen extends StatefulWidget {
   const AddPictureScreen({super.key});
 
@@ -10,6 +12,17 @@ class AddPictureScreen extends StatefulWidget {
 class _AddPictureScreenState extends State<AddPictureScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Stack(children: [
+      Container(
+        decoration: BackgroundImage(isTransparent: true).backgroundDecoration(),
+      ),
+      const Center(
+          child: Text('ADD PICTURES',
+              style: TextStyle(
+                color: Color.fromARGB(255, 218, 229, 221),
+                fontSize: 36,
+              ))),
+    ]);
+    ;
   }
 }
