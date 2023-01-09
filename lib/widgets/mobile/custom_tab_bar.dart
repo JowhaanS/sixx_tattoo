@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../cubits/navigation_cubit/navigation_cubit.dart';
 import '../../cubits/auth_cubit/auth_cubit.dart';
+import '../../app/constants.dart';
 
 class CustomTabBar extends StatefulWidget {
   const CustomTabBar({super.key});
@@ -27,7 +28,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
             setState(() {
               _selectedIndex = index;
               BlocProvider.of<NavigationCubit>(context)
-                  .setScreen(_selectedIndex);
+                  .setScreen(Navigation.values[_selectedIndex]);
             });
           },
           items: [

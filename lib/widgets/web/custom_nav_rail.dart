@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../cubits/auth_cubit/auth_cubit.dart';
 import '../../cubits/navigation_cubit/navigation_cubit.dart';
+import 'package:sixx_tattoo/custom_icon_icons.dart';
+import '../../app/constants.dart';
 
 class CustomNavRail extends StatefulWidget {
   const CustomNavRail({
@@ -21,6 +23,14 @@ class _CustomNavRailState extends State<CustomNavRail> {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         return NavigationRail(
+            leading: IconButton(
+              onPressed: () {
+                BlocProvider.of<NavigationCubit>(context)
+                    .setScreen(Navigation.login);
+              },
+              icon: const Icon(CustomIcons.logo),
+              color: const Color.fromARGB(255, 88, 168, 174),
+            ),
             useIndicator: true,
             indicatorColor: const Color.fromARGB(255, 88, 168, 174),
             labelType: NavigationRailLabelType.all,
@@ -36,7 +46,7 @@ class _CustomNavRailState extends State<CustomNavRail> {
               setState(() {
                 _selectedIndex = index;
                 BlocProvider.of<NavigationCubit>(context)
-                    .setScreen(_selectedIndex);
+                    .setScreen(Navigation.values[_selectedIndex]);
               });
             },
             backgroundColor: const Color.fromARGB(255, 29, 29, 29),

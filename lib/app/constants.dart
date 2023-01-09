@@ -1,3 +1,6 @@
+enum Navigation { home, gallery, booking, add, login }
+
+
 // Colors
 // Primary rgba(88,167,174,255)
 // Secondary rgba(218,229,221,255)
