@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'home_screen.dart';
+import '../widgets/background_image.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -18,6 +19,10 @@ class _LoginWidgetState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        Container(
+          decoration:
+              BackgroundImage(isTransparent: true).backgroundDecoration(),
+        ),
         Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -25,10 +30,15 @@ class _LoginWidgetState extends State<LoginScreen> {
               const SizedBox(
                 height: 80,
               ),
-              TextFormField(
-                controller: phoneNumberController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(hintText: "+46 000 0000 000"),
+              Container(
+                decoration: const BoxDecoration(color: Colors.white),
+                child: TextFormField(
+                  controller: phoneNumberController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    hintText: "+46 000 0000 000",
+                  ),
+                ),
               ),
               const SizedBox(height: 20),
               FloatingActionButton(onPressed: () {
@@ -89,43 +99,45 @@ class _VerifyOTPWidgetState extends State<VerifyOTPWidget> {
   final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 80,
-                ),
-                TextFormField(
-                  controller: pinController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(hintText: "6 digit code"),
-                ),
-                const SizedBox(height: 20),
-                FloatingActionButton(onPressed: () async {
-                  setState(() {
-                    loading = true;
-                  });
-                  final credential = PhoneAuthProvider.credential(
-                      verificationId: widget.verificationId,
-                      smsCode: pinController.text.toString());
-                  try {
-                    await auth.signInWithCredential(credential);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (ctx) => HomeScreen()));
-                  } catch (e) {
-                    loading = false;
-                    print(e.toString());
-                  }
-                })
-              ],
-            ),
-          )
-        ],
-      ),
+    return Stack(
+      children: [
+        Container(
+          decoration:
+              BackgroundImage(isTransparent: true).backgroundDecoration(),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 80,
+              ),
+              TextFormField(
+                controller: pinController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(hintText: "6 digit code"),
+              ),
+              const SizedBox(height: 20),
+              FloatingActionButton(onPressed: () async {
+                setState(() {
+                  loading = true;
+                });
+                final credential = PhoneAuthProvider.credential(
+                    verificationId: widget.verificationId,
+                    smsCode: pinController.text.toString());
+                try {
+                  await auth.signInWithCredential(credential);
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (ctx) => HomeScreen()));
+                } catch (e) {
+                  loading = false;
+                  print(e.toString());
+                }
+              })
+            ],
+          ),
+        )
+      ],
     );
   }
 }

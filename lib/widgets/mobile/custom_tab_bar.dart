@@ -47,7 +47,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
                 icon: Icon(
                   Icons.calendar_month_outlined,
                 )),
-            if (state is AuthNotAuthenticated)
+            if (state is AuthAuthenticated)
               const BottomNavigationBarItem(
                 label: 'Add image',
                 icon: Icon(

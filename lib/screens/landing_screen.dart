@@ -67,6 +67,12 @@ class LandingScreen extends StatelessWidget {
                     if (state is NavigationBooking) {
                       return const BookingScreen();
                     }
+                    if (state is NavigationLogin) {
+                      return const LoginScreen();
+                    }
+                    if (state is NavigationAdd) {
+                      return const AddPictureScreen();
+                    }
                     return const Center(
                       child: CircularProgressIndicator(),
                     );

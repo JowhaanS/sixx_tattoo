@@ -25,8 +25,10 @@ class _CustomNavRailState extends State<CustomNavRail> {
         return NavigationRail(
             leading: IconButton(
               onPressed: () {
-                BlocProvider.of<NavigationCubit>(context)
-                    .setScreen(Navigation.login);
+                if (state is! AuthAuthenticated) {
+                  BlocProvider.of<NavigationCubit>(context)
+                      .setScreen(Navigation.login);
+                }
               },
               icon: const Icon(CustomIcons.logo),
               color: const Color.fromARGB(255, 88, 168, 174),
