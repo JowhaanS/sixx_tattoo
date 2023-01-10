@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sixx_tattoo/screens/add_pictures_screen.dart';
 import 'package:sixx_tattoo/screens/booking_screen.dart';
 import 'package:sixx_tattoo/screens/gallery_screen.dart';
-import 'package:sixx_tattoo/screens/login_screen.dart';
 import 'package:sixx_tattoo/widgets/mobile/custom_tab_bar.dart';
 
 import 'home_screen.dart';
@@ -43,9 +42,6 @@ class LandingScreen extends StatelessWidget {
                       if (state is NavigationBooking) {
                         return const BookingScreen();
                       }
-                      if (state is NavigationLogin) {
-                        return const LoginScreen();
-                      }
                       if (state is NavigationAdd) {
                         return const AddPictureScreen();
                       }
@@ -66,9 +62,6 @@ class LandingScreen extends StatelessWidget {
                     }
                     if (state is NavigationBooking) {
                       return const BookingScreen();
-                    }
-                    if (state is NavigationLogin) {
-                      return const LoginScreen();
                     }
                     if (state is NavigationAdd) {
                       return const AddPictureScreen();

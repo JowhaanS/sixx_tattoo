@@ -44,6 +44,7 @@ dependencies:
   booking_calendar: ^1.1.7
   firebase_core: ^2.4.0
   firebase_auth: ^4.2.1
+  pinput: ^2.2.21
 
 flutter_icons:
   android: "launcher_icon"

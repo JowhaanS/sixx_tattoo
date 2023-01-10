@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sixx_tattoo/widgets/login_dialog.dart';
 
 import '../../app/constants.dart';
 import '../../custom_icon_icons.dart';
@@ -26,8 +27,7 @@ class _CustomNavRailState extends State<CustomNavRail> {
             leading: IconButton(
               onPressed: () {
                 if (state is! AuthAuthenticated) {
-                  BlocProvider.of<NavigationCubit>(context)
-                      .setScreen(Navigation.login);
+                  loginDialog(context);
                 }
               },
               icon: const Icon(CustomIcons.logo),
