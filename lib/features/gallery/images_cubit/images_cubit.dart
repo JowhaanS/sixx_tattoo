@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../models/image.dart';
+import '../models/image.dart';
 
 part 'images_state.dart';
 

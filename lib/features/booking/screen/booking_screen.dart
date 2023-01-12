@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/background_image.dart';
+import '../../../widgets/background_image.dart';
 
 class BookingScreen extends StatelessWidget {
   const BookingScreen({super.key});

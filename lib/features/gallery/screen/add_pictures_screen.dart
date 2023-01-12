@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/background_image.dart';
+import '../../../widgets/background_image.dart';
 
 class AddPictureScreen extends StatefulWidget {
   const AddPictureScreen({super.key});

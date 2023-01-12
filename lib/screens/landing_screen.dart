@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sixx_tattoo/screens/add_pictures_screen.dart';
-import 'package:sixx_tattoo/screens/booking_screen.dart';
-import 'package:sixx_tattoo/screens/gallery_screen.dart';
+import 'package:sixx_tattoo/features/gallery/screen/add_pictures_screen.dart';
+import 'package:sixx_tattoo/features/booking/screen/booking_screen.dart';
+import 'package:sixx_tattoo/gallery/screen/gallery_screen.dart';
 import 'package:sixx_tattoo/widgets/mobile/custom_tab_bar.dart';
 
 import 'home_screen.dart';
 import '../widgets/web/custom_nav_rail.dart';
-import '../cubits/auth_cubit/auth_cubit.dart';
+import '../features/admin/cubit/auth_cubit.dart';
 import '../cubits/navigation_cubit/navigation_cubit.dart';
 
 class LandingScreen extends StatelessWidget {
-  bool isScreenBig(BuildContext context) =>
-      MediaQuery.of(context).size.width >= 400;
   const LandingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    bool isScreenBig = MediaQuery.of(context).size.width >= 480;
     BlocProvider.of<AuthCubit>(context).authenticate();
     return Scaffold(
       body: BlocProvider(
           create: (context) => NavigationCubit(),
-          child: isScreenBig(context)
+          child: isScreenBig
               ? Row(children: [
                   const CustomNavRail(),
                   const VerticalDivider(

@@ -14,4 +14,8 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthAuthenticated());
     }
   }
+
+  void enteredValidNumber() {
+    emit(AuthAuthenticate());
+  }
 }
