@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sixx_tattoo/app/constants.dart';
 import 'package:sixx_tattoo/features/gallery/screen/add_pictures_screen.dart';
 import 'package:sixx_tattoo/features/booking/screen/booking_screen.dart';
-import 'package:sixx_tattoo/gallery/screen/gallery_screen.dart';
-import 'package:sixx_tattoo/widgets/mobile/custom_tab_bar.dart';
 
+import 'package:sixx_tattoo/widgets/small_screen/custom_tab_bar.dart';
+
+import '../features/gallery/screen/gallery_screen.dart';
 import 'home_screen.dart';
-import '../widgets/web/custom_nav_rail.dart';
+import '../widgets/big_screen/custom_nav_rail.dart';
 import '../features/admin/cubit/auth_cubit.dart';
 import '../cubits/navigation_cubit/navigation_cubit.dart';
 
@@ -26,14 +28,14 @@ class LandingScreen extends StatelessWidget {
                   const VerticalDivider(
                     thickness: 6,
                     width: 6,
-                    color: Color.fromARGB(255, 88, 168, 174),
+                    color: SixxColors.primary,
                   ),
                   Expanded(
                     child: BlocBuilder<NavigationCubit, NavigationState>(
                         builder: (context, state) {
                       if (state is NavigationInitial ||
                           state is NavigationHome) {
-                        return const HomeScreen();
+                        return HomeScreen();
                       }
                       if (state is NavigationGallery) {
                         return const GalleryScreen();
@@ -54,7 +56,7 @@ class LandingScreen extends StatelessWidget {
                   body: BlocBuilder<NavigationCubit, NavigationState>(
                       builder: (context, state) {
                     if (state is NavigationInitial || state is NavigationHome) {
-                      return const HomeScreen();
+                      return HomeScreen();
                     }
                     if (state is NavigationGallery) {
                       return const GalleryScreen();

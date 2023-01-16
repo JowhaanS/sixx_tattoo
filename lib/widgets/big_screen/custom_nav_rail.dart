@@ -45,19 +45,18 @@ class _CustomNavRailState extends State<CustomNavRail> {
                 }
               },
               icon: const Icon(CustomIcons.logo),
-              color: const Color.fromARGB(255, 88, 168, 174),
+              color: SixxColors.primary,
             ),
             useIndicator: true,
-            indicatorColor: const Color.fromARGB(255, 88, 168, 174),
+            indicatorColor: SixxColors.primary,
             labelType: NavigationRailLabelType.all,
-            selectedIconTheme:
-                const IconThemeData(color: Color.fromARGB(255, 218, 229, 221)),
+            selectedIconTheme: const IconThemeData(color: SixxColors.secondary),
             unselectedIconTheme:
-                const IconThemeData(color: Color.fromARGB(255, 218, 229, 221)),
+                const IconThemeData(color: SixxColors.secondary),
             selectedLabelTextStyle:
-                const TextStyle(color: Color.fromARGB(255, 218, 229, 221)),
+                const TextStyle(color: SixxColors.secondary),
             unselectedLabelTextStyle:
-                const TextStyle(color: Color.fromARGB(255, 218, 229, 221)),
+                const TextStyle(color: SixxColors.secondary),
             onDestinationSelected: (int index) {
               setState(() {
                 _selectedIndex = index;
@@ -65,7 +64,7 @@ class _CustomNavRailState extends State<CustomNavRail> {
                     .setScreen(Navigation.values[_selectedIndex]);
               });
             },
-            backgroundColor: const Color.fromARGB(255, 29, 29, 29),
+            backgroundColor: SixxColors.backGround,
             destinations: <NavigationRailDestination>[
               const NavigationRailDestination(
                 icon: Icon(

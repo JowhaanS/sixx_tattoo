@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sixx_tattoo/app/constants.dart';
 
 class BackgroundImage {
   BackgroundImage({required this.isTransparent});
@@ -7,7 +8,7 @@ class BackgroundImage {
 
   BoxDecoration backgroundDecoration() {
     return BoxDecoration(
-        color: const Color.fromARGB(255, 29, 29, 29),
+        color: SixxColors.backGround,
         image: DecorationImage(
           colorFilter: isTransparent
               ? ColorFilter.mode(

@@ -7,16 +7,22 @@ class _VerifyOTPScene extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      const Text('Verify'),
-      SizedBox(
-        height: MediaQuery.of(context).size.height * 0.75,
-        width: MediaQuery.of(context).size.width * 0.4,
-        child: const Pinput(
-          length: 6,
-        ),
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: const [
+          Text('Verifiera',
+              style: TextStyle(
+                color: Color.fromARGB(255, 218, 229, 221),
+                fontSize: 36,
+              )),
+          Pinput(
+            length: 6,
+          ),
+        ],
       ),
-    ]);
+    );
   }
 }
 // final _defaultPinTheme = PinTheme(

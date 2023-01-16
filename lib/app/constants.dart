@@ -1,4 +1,20 @@
+import 'package:flutter/material.dart';
+
 enum Navigation { home, gallery, booking, add, login }
+
+class Constants {
+  static const artist = {'name': 'Christian', 'number': '+46761464739'};
+  static const artist2 = {'name': 'Emanuel', 'number': '+4670000000'};
+  static const String adress = 'Bangårdsgatan 2, 534 30 Vara';
+  static final Uri googleUri = Uri.parse(
+      'https://www.google.com/maps/place/Sixx+tattoo+studio/@58.2607938,12.9502927,15z/data=!4m5!3m4!1s0x0:0x1eadd778d3c3fc76!8m2!3d58.2608436!4d12.9504061');
+}
+
+class SixxColors {
+  static const Color primary = Color.fromARGB(255, 88, 168, 174);
+  static const Color secondary = Color.fromARGB(255, 218, 229, 221);
+  static const Color backGround = Color.fromARGB(255, 29, 29, 29);
+}
 
 
 // Colors

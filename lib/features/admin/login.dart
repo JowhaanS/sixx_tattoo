@@ -24,17 +24,15 @@ class _LoginBuilder extends StatelessWidget {
 
     return Stack(
       children: [
-        Column(children: [
-          BlocBuilder<AuthCubit, AuthState>(
-            builder: (context, state) {
-              if (state is AuthAuthenticate) {
-                return _VerifyOTPScene(bloc: bloc);
-              } else {
-                return _RegisterationScene(bloc: bloc);
-              }
-            },
-          ),
-        ]),
+        BlocBuilder<AuthCubit, AuthState>(
+          builder: (context, state) {
+            if (state is AuthAuthenticate) {
+              return _VerifyOTPScene(bloc: bloc);
+            } else {
+              return _RegisterationScene(bloc: bloc);
+            }
+          },
+        ),
         Positioned(
           top: 8,
           left: 8,

@@ -7,14 +7,34 @@ class _RegisterationScene extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: const [
-      Center(
-        child: Text('LOGIN',
-            style: TextStyle(
-              color: Color.fromARGB(255, 218, 229, 221),
-              fontSize: 36,
-            )),
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          const Text('Registrera användare',
+              style: TextStyle(
+                color: Color.fromARGB(255, 218, 229, 221),
+                fontSize: 36,
+              )),
+          TextField(
+            controller: bloc.phoneNumberController,
+            onChanged: (value) => bloc.validateNumber(),
+            onSubmitted: (value) {
+              if (bloc.checkIfPhoneNumberEmpty()) {
+              } else if (bloc.validateNumber() == null) {
+              } else {
+                bloc.enteredValidNumber();
+              }
+            },
+            decoration: const InputDecoration(
+              icon: Icon(Icons.phone),
+              label: Text('Phonenumber'),
+              border: OutlineInputBorder(),
+            ),
+          ),
+        ],
       ),
-    ]);
+    );
   }
 }

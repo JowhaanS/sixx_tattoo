@@ -20,9 +20,9 @@ class _CustomTabBarState extends State<CustomTabBar> {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         return BottomNavigationBar(
-          selectedItemColor: const Color.fromARGB(255, 88, 168, 174),
-          unselectedItemColor: const Color.fromARGB(255, 218, 229, 221),
-          backgroundColor: const Color.fromARGB(255, 20, 20, 20),
+          selectedItemColor: SixxColors.primary,
+          unselectedItemColor: SixxColors.secondary,
+          backgroundColor: SixxColors.backGround,
           currentIndex: _selectedIndex,
           onTap: (int index) {
             setState(() {
