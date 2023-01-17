@@ -14,23 +14,48 @@ class _RegisterationScene extends StatelessWidget {
         children: [
           const Text('Registrera användare',
               style: TextStyle(
-                color: Color.fromARGB(255, 218, 229, 221),
+                color: SixxColors.secondary,
                 fontSize: 36,
               )),
-          TextField(
-            controller: bloc.phoneNumberController,
-            onChanged: (value) => bloc.validateNumber(),
-            onSubmitted: (value) {
-              if (bloc.checkIfPhoneNumberEmpty()) {
-              } else if (bloc.validateNumber() == null) {
-              } else {
-                bloc.enteredValidNumber();
-              }
-            },
-            decoration: const InputDecoration(
-              icon: Icon(Icons.phone),
-              label: Text('Phonenumber'),
-              border: OutlineInputBorder(),
+          SizedBox(
+            width: 600,
+            child: TextField(
+              keyboardType: TextInputType.number,
+              style: const TextStyle(color: SixxColors.secondary),
+              cursorColor: SixxColors.secondary,
+              controller: bloc.phoneNumberController,
+              onChanged: (value) => bloc.validateNumber(),
+              onSubmitted: (value) {
+                if (bloc.checkIfPhoneNumberEmpty()) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(CustomSnackbar.snackBarPhoneNumberEmpty);
+                } else if (bloc.validateNumber() == null) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(CustomSnackbar.snackBarInvalidNumber);
+                } else {
+                  bloc.enteredValidNumber();
+                }
+              },
+              decoration: const InputDecoration(
+                icon: Icon(
+                  Icons.phone,
+                  color: SixxColors.primary,
+                ),
+                label: Text(
+                  'Phonenumber',
+                  style: TextStyle(color: SixxColors.primary),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: SixxColors.secondary,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: SixxColors.primary,
+                  ),
+                ),
+              ),
             ),
           ),
         ],

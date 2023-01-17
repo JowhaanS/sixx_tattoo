@@ -18,7 +18,7 @@ class LandingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isScreenBig = MediaQuery.of(context).size.width >= 480;
-    BlocProvider.of<AuthCubit>(context).authenticate();
+    BlocProvider.of<AuthCubit>(context).authenticated();
     return Scaffold(
       body: BlocProvider(
           create: (context) => NavigationCubit(),
@@ -35,7 +35,7 @@ class LandingScreen extends StatelessWidget {
                         builder: (context, state) {
                       if (state is NavigationInitial ||
                           state is NavigationHome) {
-                        return HomeScreen();
+                        return const HomeScreen();
                       }
                       if (state is NavigationGallery) {
                         return const GalleryScreen();
@@ -56,7 +56,7 @@ class LandingScreen extends StatelessWidget {
                   body: BlocBuilder<NavigationCubit, NavigationState>(
                       builder: (context, state) {
                     if (state is NavigationInitial || state is NavigationHome) {
-                      return HomeScreen();
+                      return const HomeScreen();
                     }
                     if (state is NavigationGallery) {
                       return const GalleryScreen();

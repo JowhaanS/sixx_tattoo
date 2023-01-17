@@ -21,54 +21,25 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: double.infinity,
-        decoration:
-            BackgroundImage(isTransparent: false).backgroundDecoration(),
-        child: isScreenBig(context)
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const SizedBox(),
-                      //
-                      InkWell(
-                        onTap: () => launchUrl(Constants.googleUri),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: const [
-                                Text(
-                                  'Location ',
-                                  style: TextStyle(
-                                    color: SixxColors.primary,
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.location_on,
-                                  color: SixxColors.primary,
-                                )
-                              ],
-                            ),
-                            const Text(
-                              Constants.adress,
-                              style: TextStyle(
-                                  color: SixxColors.secondary, fontSize: 16),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Column(
+      width: double.infinity,
+      decoration: BackgroundImage(isTransparent: false).backgroundDecoration(),
+      child: isScreenBig(context)
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SizedBox(),
+                    InkWell(
+                      onTap: () => launchUrl(Constants.googleUriAndroid),
+                      child: Column(
                         children: [
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: const [
                               Text(
-                                'Contact ',
+                                'Location ',
                                 style: TextStyle(
                                   color: SixxColors.primary,
                                   fontSize: 22,
@@ -76,79 +47,161 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                               Icon(
-                                Icons.phone,
+                                Icons.location_on,
                                 color: SixxColors.primary,
                               )
                             ],
                           ),
-                          InkWell(
-                            onTap: () =>
-                                _makePhoneCall(Constants.artist['number']!),
-                            child: Text(
-                              Constants.artist['name']!,
-                              style: const TextStyle(
-                                  color: SixxColors.secondary, fontSize: 16),
+                          const Text(
+                            Constants.adress,
+                            style: TextStyle(
+                                color: SixxColors.secondary, fontSize: 16),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            Text(
+                              'Contact ',
+                              style: TextStyle(
+                                color: SixxColors.primary,
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Icon(
+                              Icons.phone,
+                              color: SixxColors.primary,
+                            )
+                          ],
+                        ),
+                        InkWell(
+                          onTap: () =>
+                              _makePhoneCall(Constants.artist['number']!),
+                          child: Text(
+                            Constants.artist['name']!,
+                            style: const TextStyle(
+                              color: SixxColors.secondary,
+                              fontSize: 16,
+                              decoration: TextDecoration.underline,
+                              decorationColor: SixxColors.primary,
                             ),
                           ),
-                          const SizedBox(
-                            height: 4,
-                          ),
-                          Text(
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        InkWell(
+                          onTap: () =>
+                              _makePhoneCall(Constants.artist2['number']!),
+                          child: Text(
                             Constants.artist2['name']!,
                             style: const TextStyle(
-                                color: SixxColors.backGround, fontSize: 16),
+                              color: SixxColors.secondary,
+                              fontSize: 16,
+                              decoration: TextDecoration.underline,
+                              decorationColor: SixxColors.primary,
+                            ),
                           ),
-                          const SizedBox(
-                            height: 8,
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        )
+                      ],
+                    ),
+                    const SizedBox()
+                  ],
+                ),
+              ],
+            )
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                InkWell(
+                  onTap: () => launchUrl(Constants.googleUriAndroid),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Text(
+                            'Location ',
+                            style: TextStyle(
+                              color: SixxColors.primary,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Icon(
+                            Icons.location_on,
+                            color: SixxColors.primary,
                           )
                         ],
                       ),
-                      const SizedBox()
+                      const Text(
+                        Constants.adress,
+                        style: TextStyle(
+                            color: SixxColors.secondary, fontSize: 16),
+                      ),
                     ],
                   ),
-                ],
-              )
-            : Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-                const Text(
-                  'Location:',
-                  style: TextStyle(
-                    color: SixxColors.primary,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Text(
-                  Constants.adress,
-                  style: TextStyle(color: SixxColors.secondary, fontSize: 16),
                 ),
                 const SizedBox(
-                  height: 8,
+                  height: 4,
                 ),
-                Column(
+                Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: const [
                     Text(
-                      'Contact:',
+                      'Contact ',
                       style: TextStyle(
                         color: SixxColors.primary,
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
-                      'John doe, 070-000-000-00',
-                      style:
-                          TextStyle(color: SixxColors.secondary, fontSize: 16),
+                    Icon(
+                      Icons.phone,
+                      color: SixxColors.primary,
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () => _makePhoneCall(Constants.artist['number']!),
+                      child: Text(
+                        Constants.artist['name']!,
+                        style: const TextStyle(
+                          color: SixxColors.secondary,
+                          fontSize: 16,
+                          decoration: TextDecoration.underline,
+                          decorationColor: SixxColors.primary,
+                        ),
+                      ),
                     ),
-                    Text(
-                      'Jane doe, 070-000-000-00',
-                      style:
-                          TextStyle(color: SixxColors.secondary, fontSize: 16),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    InkWell(
+                      onTap: () => _makePhoneCall(Constants.artist2['number']!),
+                      child: Text(Constants.artist2['name']!,
+                          style: const TextStyle(
+                            color: SixxColors.secondary,
+                            fontSize: 16,
+                            decoration: TextDecoration.underline,
+                            decorationColor: SixxColors.primary,
+                          )),
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 8,
-                )
-              ]));
+              ],
+            ),
+    );
   }
 }

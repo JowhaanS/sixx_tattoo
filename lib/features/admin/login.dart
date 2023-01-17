@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
+import 'package:sixx_tattoo/app/constants.dart';
+import 'package:sixx_tattoo/screens/home_screen.dart';
+import 'package:sixx_tattoo/screens/landing_screen.dart';
 
 import 'cubit/auth_cubit.dart';
 

@@ -2,12 +2,17 @@ part of 'auth_cubit.dart';
 
 abstract class AuthState {
   bool loading = false;
-  final pinController = TextEditingController();
-  final phoneNumberController = TextEditingController();
+  AuthState(this.loading);
 }
 
-class AuthInitial extends AuthState {}
+class AuthInitial extends AuthState {
+  AuthInitial(super.loading);
+}
 
-class AuthAuthenticate extends AuthState {}
+class AuthAuthenticate extends AuthState {
+  AuthAuthenticate(super.loading);
+}
 
-class AuthAuthenticated extends AuthState {}
+class AuthAuthenticated extends AuthState {
+  AuthAuthenticated(super.loading);
+}
