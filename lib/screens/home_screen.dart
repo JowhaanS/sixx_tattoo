@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:io' show Platform;
 import 'package:url_launcher/url_launcher.dart';
 
 import '../app/constants.dart';
@@ -32,7 +33,13 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     const SizedBox(),
                     InkWell(
-                      onTap: () => launchUrl(Constants.googleUriAndroid),
+                      onTap: () {
+                        if (Platform.isIOS) {
+                          launchUrl(Constants.googleUriApple);
+                        } else {
+                          launchUrl(Constants.googleUriAndroid);
+                        }
+                      },
                       child: Column(
                         children: [
                           Row(
@@ -122,7 +129,13 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 InkWell(
-                  onTap: () => launchUrl(Constants.googleUriAndroid),
+                  onTap: () {
+                    if (Platform.isIOS) {
+                      launchUrl(Constants.googleUriApple);
+                    } else {
+                      launchUrl(Constants.googleUriAndroid);
+                    }
+                  },
                   child: Column(
                     children: [
                       Row(
