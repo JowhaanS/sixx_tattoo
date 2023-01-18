@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:sixx_tattoo/app/constants.dart';
 import 'firebase_options.dart';
 
 import 'features/admin/cubit/auth_cubit.dart';
@@ -17,7 +16,7 @@ void main() async {
   );
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
-  print(FirebaseAuth.instance.currentUser);
+  print(FirebaseAuth.instance.currentUser?.phoneNumber);
 }
 
 class MyApp extends StatelessWidget {

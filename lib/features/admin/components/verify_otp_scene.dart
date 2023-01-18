@@ -1,10 +1,9 @@
 part of '../login.dart';
 
 class _VerifyOTPScene extends StatelessWidget {
-  _VerifyOTPScene({Key? key, required this.bloc}) : super(key: key);
+  const _VerifyOTPScene({Key? key, required this.bloc}) : super(key: key);
 
   final AuthCubit bloc;
-  late bool isSuccess;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,7 @@ class _VerifyOTPScene extends StatelessWidget {
                     controller: bloc.pinController,
                     length: 6,
                     onCompleted: (pin) async {
-                      isSuccess = await bloc.verifyPin(pin);
+                      final bool isSuccess = await bloc.verifyPin(pin);
                       if (isSuccess) {
                         Navigator.of(context).pop();
                         Navigator.of(context).push(MaterialPageRoute(

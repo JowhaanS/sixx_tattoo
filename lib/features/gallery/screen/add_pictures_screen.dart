@@ -23,6 +23,5 @@ class _AddPictureScreenState extends State<AddPictureScreen> {
                 fontSize: 36,
               ))),
     ]);
-    ;
   }
 }
