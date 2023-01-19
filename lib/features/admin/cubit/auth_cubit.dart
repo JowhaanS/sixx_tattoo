@@ -7,18 +7,18 @@ import '../../../app/constants.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(AuthInitial(false));
+  AuthCubit() : super(AuthInitial(false, false));
 
   late String _verificationId;
   final auth = FirebaseAuth.instance;
   final pinController = TextEditingController(text: null);
   final phoneNumberController = TextEditingController(text: '+46');
 
-  void authenticated() {
+  void checkIfAdmin() {
     if (FirebaseAuth.instance.currentUser != null &&
         auth.currentUser!.phoneNumber == Constants.artist['number']) {
       {
-        emit(AuthAuthenticated(state.loading = false));
+        emit(AuthAuthenticated(state.loading = false, state.isAdmin = true));
       }
     }
   }
@@ -34,19 +34,9 @@ class AuthCubit extends Cubit<AuthState> {
         codeAutoRetrievalTimeout: (e) {});
   }
 
-  // void startWebAuthentication() async {
-  //   ConfirmationResult confirmationResult =
-  //       await auth.signInWithPhoneNumber(phoneNumberController.text);
-  //   print(confirmationResult);
-  //   UserCredential userCredential =
-  //       await confirmationResult.confirm(pinController.text);
-  //   print(userCredential);
-  // }
-
   void enteredValidNumber() {
-    // startWebAuthentication();
     startPhoneAuthentication();
-    emit(AuthAuthenticate(state.loading = false));
+    emit(AuthAuthenticate(state.loading = false, state.isAdmin = false));
   }
 
   bool checkIfPhoneNumberEmpty() {
@@ -69,21 +59,9 @@ class AuthCubit extends Cubit<AuthState> {
       verificationId: _verificationId,
       smsCode: pin,
     );
-    print('kommer jag hit?');
     try {
-      emit(AuthAuthenticate(state.loading = true));
+      emit(AuthAuthenticate(state.loading = true, state.isAdmin = false));
       await auth.signInWithCredential(credential);
-      print(auth.currentUser?.phoneNumber.runtimeType);
-      print(auth.currentUser?.phoneNumber);
-      print(Constants.artist['number'].runtimeType);
-      print(Constants.artist['number']);
-      print(auth.currentUser?.phoneNumber.toString() ==
-          Constants.artist['number'].toString());
-      if (auth.currentUser!.phoneNumber == Constants.artist['number']) {
-        // emit(AuthAuthenticated(state.loading = false));
-        print('ska bara kolla om denna behövs');
-        return true;
-      }
       return true;
     } catch (e) {
       print(e);

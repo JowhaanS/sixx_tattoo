@@ -17,43 +17,20 @@ class LandingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AuthCubit bloc = BlocProvider.of<AuthCubit>(context);
+    bloc.checkIfAdmin();
     bool isScreenBig = MediaQuery.of(context).size.width >= 480;
-    BlocProvider.of<AuthCubit>(context).authenticated();
     return Scaffold(
-      body: BlocProvider(
-          create: (context) => NavigationCubit(),
-          child: isScreenBig
-              ? Row(children: [
-                  const CustomNavRail(),
-                  const VerticalDivider(
-                    thickness: 6,
-                    width: 6,
-                    color: SixxColors.primary,
-                  ),
-                  Expanded(
-                    child: BlocBuilder<NavigationCubit, NavigationState>(
-                        builder: (context, state) {
-                      if (state is NavigationInitial ||
-                          state is NavigationHome) {
-                        return const HomeScreen();
-                      }
-                      if (state is NavigationGallery) {
-                        return const GalleryScreen();
-                      }
-                      if (state is NavigationBooking) {
-                        return const BookingScreen();
-                      }
-                      if (state is NavigationAdd) {
-                        return const AddPictureScreen();
-                      }
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }),
-                  ),
-                ])
-              : Scaffold(
-                  body: BlocBuilder<NavigationCubit, NavigationState>(
+        body: isScreenBig
+            ? Row(children: [
+                const CustomNavRail(),
+                const VerticalDivider(
+                  thickness: 6,
+                  width: 6,
+                  color: SixxColors.primary,
+                ),
+                Expanded(
+                  child: BlocBuilder<NavigationCubit, NavigationState>(
                       builder: (context, state) {
                     if (state is NavigationInitial || state is NavigationHome) {
                       return const HomeScreen();
@@ -71,8 +48,28 @@ class LandingScreen extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     );
                   }),
-                  bottomNavigationBar: const CustomTabBar(),
-                )),
-    );
+                ),
+              ])
+            : Scaffold(
+                body: BlocBuilder<NavigationCubit, NavigationState>(
+                    builder: (context, state) {
+                  if (state is NavigationInitial || state is NavigationHome) {
+                    return const HomeScreen();
+                  }
+                  if (state is NavigationGallery) {
+                    return const GalleryScreen();
+                  }
+                  if (state is NavigationBooking) {
+                    return const BookingScreen();
+                  }
+                  if (state is NavigationAdd) {
+                    return const AddPictureScreen();
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }),
+                bottomNavigationBar: const CustomTabBar(),
+              ));
   }
 }

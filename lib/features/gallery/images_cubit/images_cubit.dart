@@ -7,5 +7,9 @@ part 'images_state.dart';
 class ImagesCubit extends Cubit<ImagesState> {
   ImagesCubit() : super(ImagesInitial());
 
-  final List<Image> _images = [];
+  List<Image> _images = [];
+
+  List<Image> get images {
+    return [..._images];
+  }
 }

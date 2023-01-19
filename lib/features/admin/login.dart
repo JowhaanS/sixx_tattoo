@@ -13,14 +13,6 @@ class Login extends StatelessWidget {
   const Login({super.key});
 
   @override
-  Widget build(BuildContext context) => BlocProvider(
-      create: (context) => AuthCubit(), child: _LoginBuilder(key: key));
-}
-
-class _LoginBuilder extends StatelessWidget {
-  const _LoginBuilder({super.key});
-
-  @override
   Widget build(BuildContext context) {
     final AuthCubit bloc = BlocProvider.of<AuthCubit>(context);
 

@@ -2,17 +2,18 @@ part of 'auth_cubit.dart';
 
 abstract class AuthState {
   bool loading = false;
-  AuthState(this.loading);
+  bool isAdmin = false;
+  AuthState(this.loading, this.isAdmin);
 }
 
 class AuthInitial extends AuthState {
-  AuthInitial(super.loading);
+  AuthInitial(super.loading, super.isAdmin);
 }
 
 class AuthAuthenticate extends AuthState {
-  AuthAuthenticate(super.loading);
+  AuthAuthenticate(super.loading, super.isAdmin);
 }
 
 class AuthAuthenticated extends AuthState {
-  AuthAuthenticated(super.loading);
+  AuthAuthenticated(super.loading, super.isAdmin);
 }

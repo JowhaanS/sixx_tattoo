@@ -4,9 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:sixx_tattoo/cubits/navigation_cubit/navigation_cubit.dart';
+import 'package:sixx_tattoo/features/admin/cubit/auth_cubit.dart';
+import 'package:sixx_tattoo/features/gallery/images_cubit/images_cubit.dart';
 import 'firebase_options.dart';
 
-import 'features/admin/cubit/auth_cubit.dart';
 import 'screens/landing_screen.dart';
 
 void main() async {
@@ -23,8 +25,15 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthCubit>(
+          create: (BuildContext context) => AuthCubit(),
+        ),
+        BlocProvider<NavigationCubit>(
+          create: (BuildContext context) => NavigationCubit(),
+        ),
+      ],
       child: const MaterialApp(
         title: 'Sixx Tattoo',
         home: LandingScreen(),
