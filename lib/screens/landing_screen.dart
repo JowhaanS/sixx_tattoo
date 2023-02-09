@@ -32,7 +32,7 @@ class LandingScreen extends StatelessWidget {
                 Expanded(
                   child: BlocBuilder<NavigationCubit, NavigationState>(
                       builder: (context, state) {
-                    if (state is NavigationInitial || state is NavigationHome) {
+                    if (state is NavigationHome) {
                       return const HomeScreen();
                     }
                     if (state is NavigationGallery) {
@@ -53,7 +53,7 @@ class LandingScreen extends StatelessWidget {
             : Scaffold(
                 body: BlocBuilder<NavigationCubit, NavigationState>(
                     builder: (context, state) {
-                  if (state is NavigationInitial || state is NavigationHome) {
+                  if (state is NavigationHome) {
                     return const HomeScreen();
                   }
                   if (state is NavigationGallery) {

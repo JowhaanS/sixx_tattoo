@@ -4,7 +4,7 @@ import '../../app/constants.dart';
 part 'navigation_state.dart';
 
 class NavigationCubit extends Cubit<NavigationState> {
-  NavigationCubit() : super(NavigationInitial());
+  NavigationCubit() : super(NavigationHome());
 
   void setScreen(Navigation index) {
     switch (index) {
@@ -35,7 +35,7 @@ class NavigationCubit extends Cubit<NavigationState> {
         break;
       default:
         {
-          emit(NavigationInitial());
+          emit(NavigationHome());
         }
     }
   }
