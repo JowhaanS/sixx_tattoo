@@ -33,6 +33,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<NavigationCubit>(
           create: (BuildContext context) => NavigationCubit(),
         ),
+        BlocProvider<ImagesCubit>(
+          create: (BuildContext context) => ImagesCubit(),
+        ),
       ],
       child: const MaterialApp(
         title: 'Sixx Tattoo',

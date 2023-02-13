@@ -3,7 +3,7 @@ class Image {
   final String author;
   final String imageUrl;
   final bool isStencil;
-  final DateTime timeStamp;
+  final String timeStamp;
   Image({
     required this.id,
     required this.author,

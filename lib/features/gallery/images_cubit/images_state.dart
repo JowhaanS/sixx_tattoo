@@ -1,11 +1,31 @@
 part of 'images_cubit.dart';
 
-abstract class ImagesState {}
+abstract class ImagesState {
+  final List<Image> _images;
 
-class ImagesInitial extends ImagesState {}
+  List<Image> get images {
+    return [..._images];
+  }
 
-class ImagesDefault extends ImagesState {}
+  ImagesState(this._images);
+}
 
-class ImagesByAuth extends ImagesState {}
+class ImagesInitial extends ImagesState {
+  ImagesInitial(super._images);
+}
 
-class StencilImagesByAuth extends ImagesState {}
+class ImagesLoading extends ImagesState {
+  ImagesLoading(super._images);
+}
+
+class ImagesDefault extends ImagesState {
+  ImagesDefault(super._images);
+}
+
+class ImagesByAuth extends ImagesState {
+  ImagesByAuth(super._images);
+}
+
+class StencilImagesByAuth extends ImagesState {
+  StencilImagesByAuth(super._images);
+}
