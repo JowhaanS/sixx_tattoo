@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sixx_tattoo/app/constants.dart';
+import 'package:sixx_tattoo/features/admin/cubit/auth_cubit.dart';
+import 'package:sixx_tattoo/features/gallery/images_cubit/images_cubit.dart';
 
 import '../../../widgets/background_image.dart';
 
-class AddPictureScreen extends StatefulWidget {
+class AddPictureScreen extends StatelessWidget {
   const AddPictureScreen({super.key});
-
-  @override
-  State<AddPictureScreen> createState() => _AddPictureScreenState();
-}
-
-class _AddPictureScreenState extends State<AddPictureScreen> {
-  String buttonText = "Upload Image";
-  bool imagePicked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +25,16 @@ class _AddPictureScreenState extends State<AddPictureScreen> {
               height: 50,
               width: 150,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  BlocProvider.of<ImagesCubit>(context).takePicture(
+                    BlocProvider.of<AuthCubit>(context).auth.currentUser!.uid,
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: SixxColors.primary),
-                child: Text(
-                  buttonText,
-                  style: const TextStyle(
+                child: const Text(
+                  'Select Image',
+                  style: TextStyle(
                     color: SixxColors.secondary,
                   ),
                 ),
@@ -47,16 +46,9 @@ class _AddPictureScreenState extends State<AddPictureScreen> {
           ],
         ),
       )
-      // const Center(
-      //     child: Text('ADD PICTURES',
-      //         style: TextStyle(
-      //           color: Color.fromARGB(255, 218, 229, 221),
-      //           fontSize: 36,
-      //         ))),
     ]);
   }
 }
-
 
 //Button at the bottom that says take or upload image.
 //Greyed out button that waits on preview to Actually upload.

@@ -1,34 +1,44 @@
-import 'package:uuid/uuid.dart';
+import 'dart:io';
+
+import 'package:path/path.dart' as path;
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart' as syspaths;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sixx_tattoo/features/gallery/services/image_service.dart';
 
 import '../models/image.dart';
 
 part 'images_state.dart';
 
 class ImagesCubit extends Cubit<ImagesState> {
-  var uuid = const Uuid();
-  bool isStencil = true;
-  FirebaseAuth auth = FirebaseAuth.instance;
-  FirebaseDatabase database = FirebaseDatabase.instance;
-  DatabaseReference bookingRef = FirebaseDatabase.instance.ref("booking");
-  DatabaseReference imagesRef = FirebaseDatabase.instance.ref("images");
+  ImageService service = ImageService();
+  final picker = ImagePicker();
+  late File _pickedImage;
+  late File _storedImage;
+  late bool isStencil;
 
   ImagesCubit() : super(ImagesInitial([]));
 
-  void addPicture() async {
-    String imageUrl = await methodToSaveImageIntoStorage();
-    imagesRef.set(Image(
-      id: uuid.v4(),
-      author: auth.currentUser!.uid,
-      imageUrl: imageUrl,
-      isStencil: isStencil,
-      timeStamp: DateTime.now().toIso8601String(),
-    ));
+  Future<void> takePicture(String id) async {
+    final imageFile = await picker.getImage(
+      source: ImageSource.camera,
+      maxWidth: 600,
+    );
+    if (imageFile == null) {
+      return;
+    }
+    _storedImage = File(imageFile.path);
+    final appDir = await syspaths.getApplicationDocumentsDirectory();
+    final fileName = path.basename(imageFile.path);
+    final savedImage =
+        await File(imageFile.path).copy('${appDir.path}/$fileName');
+    service.addPicture(isStencil, savedImage, id);
+    selectImage(savedImage);
   }
 
-  Future<String> methodToSaveImageIntoStorage() async {
-    return 'url';
+  void selectImage(File pickedImage) {
+    _pickedImage = pickedImage;
   }
+
+  void saveImage() {}
 }
