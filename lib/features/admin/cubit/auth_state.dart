@@ -2,7 +2,7 @@ part of 'auth_cubit.dart';
 
 abstract class AuthState {
   bool loading = false;
-  bool isAdmin = false;
+  bool isAdmin;
   AuthState(this.loading, this.isAdmin);
 }
 

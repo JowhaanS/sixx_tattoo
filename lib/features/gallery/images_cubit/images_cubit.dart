@@ -11,34 +11,32 @@ import '../models/image.dart';
 part 'images_state.dart';
 
 class ImagesCubit extends Cubit<ImagesState> {
-  ImageService service = ImageService();
-  final picker = ImagePicker();
-  late File _pickedImage;
-  late File _storedImage;
-  late bool isStencil;
-
+  final imagePicker = ImagePicker();
+  late ImageService imageService = ImageService();
   ImagesCubit() : super(ImagesInitial([]));
 
   Future<void> takePicture(String id) async {
-    final imageFile = await picker.getImage(
+    print('kommer vi hit?');
+    final imageFile = await imagePicker.getImage(
       source: ImageSource.camera,
       maxWidth: 600,
     );
     if (imageFile == null) {
       return;
     }
-    _storedImage = File(imageFile.path);
+    File storedImage = File(imageFile.path);
+    bool isStencil = true;
     final appDir = await syspaths.getApplicationDocumentsDirectory();
     final fileName = path.basename(imageFile.path);
     final savedImage =
         await File(imageFile.path).copy('${appDir.path}/$fileName');
-    service.addPicture(isStencil, savedImage, id);
-    selectImage(savedImage);
+    imageService.addPicture(isStencil, savedImage, id);
   }
 
-  void selectImage(File pickedImage) {
-    _pickedImage = pickedImage;
+  void printHelloWorld() {
+    print('Hello World');
   }
 
   void saveImage() {}
+  void fetchAndSetImages() {}
 }

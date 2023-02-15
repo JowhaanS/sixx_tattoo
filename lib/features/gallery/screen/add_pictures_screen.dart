@@ -27,7 +27,7 @@ class AddPictureScreen extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   BlocProvider.of<ImagesCubit>(context).takePicture(
-                    BlocProvider.of<AuthCubit>(context).auth.currentUser!.uid,
+                    "wqBwvTO7Q6es51K9fYKf8U2G48p1",
                   );
                 },
                 style: ElevatedButton.styleFrom(

@@ -23,7 +23,6 @@ class _CustomNavRailState extends State<CustomNavRail> {
   @override
   Widget build(BuildContext context) {
     final AuthCubit bloc = BlocProvider.of<AuthCubit>(context);
-    final NavigationCubit navBloc = BlocProvider.of<NavigationCubit>(context);
     return NavigationRail(
         leading: BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
           return IconButton(
