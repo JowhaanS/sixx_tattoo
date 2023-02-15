@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sixx_tattoo/app/constants.dart';
 import 'package:sixx_tattoo/screens/landing_screen.dart';
+import 'package:sixx_tattoo/widgets/background_image.dart';
 
 import 'cubit/auth_cubit.dart';
 
@@ -43,4 +44,21 @@ class Login extends StatelessWidget {
       ],
     );
   }
+}
+
+Future<dynamic> loginDialog(BuildContext context) {
+  return showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.7,
+            width: MediaQuery.of(context).size.width * 0.5,
+            decoration:
+                BackgroundImage(isTransparent: true).backgroundDecoration(),
+            child: const Login(),
+          ),
+        );
+      });
 }

@@ -128,44 +128,6 @@ class HomeScreen extends StatelessWidget {
           : Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                InkWell(
-                  onTap: () {
-                    if (defaultTargetPlatform == TargetPlatform.iOS) {
-                      launchUrl(Constants.googleUriApple);
-                    } else {
-                      launchUrl(Constants.googleUriAndroid);
-                    }
-                  },
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Text(
-                            'Location ',
-                            style: TextStyle(
-                              color: SixxColors.primary,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Icon(
-                            Icons.location_on,
-                            color: SixxColors.primary,
-                          )
-                        ],
-                      ),
-                      const Text(
-                        Constants.adress,
-                        style: TextStyle(
-                            color: SixxColors.secondary, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: const [

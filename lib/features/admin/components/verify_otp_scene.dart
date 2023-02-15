@@ -18,10 +18,12 @@ class _VerifyOTPScene extends StatelessWidget {
                         color: Color.fromARGB(255, 218, 229, 221),
                         fontSize: 36,
                       )),
-                  Text(
-                    'Ange koden som skickades till : ${bloc.phoneNumberController.text}',
-                    style: const TextStyle(
-                      color: SixxColors.secondary,
+                  Center(
+                    child: Text(
+                      'Ange koden som skickades till :\n${bloc.phoneNumberController.text}',
+                      style: const TextStyle(
+                        color: SixxColors.secondary,
+                      ),
                     ),
                   ),
                   Pinput(

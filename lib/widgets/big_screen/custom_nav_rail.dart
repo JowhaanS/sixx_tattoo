@@ -28,21 +28,8 @@ class _CustomNavRailState extends State<CustomNavRail> {
           return IconButton(
             onPressed: () {
               if (state is! AuthAuthenticated) {
-                showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (BuildContext context) {
-                      return Dialog(
-                        child: Container(
-                          height: MediaQuery.of(context).size.height * 0.7,
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          decoration: BackgroundImage(isTransparent: true)
-                              .backgroundDecoration(),
-                          child: const Login(),
-                        ),
-                      );
-                    });
-              } else {}
+                loginDialog(context);
+              }
             },
             icon: const Icon(CustomIcons.logo),
             color: SixxColors.primary,

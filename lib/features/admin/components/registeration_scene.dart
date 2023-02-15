@@ -15,10 +15,10 @@ class _RegisterationScene extends StatelessWidget {
           const Text('Registrera användare',
               style: TextStyle(
                 color: SixxColors.secondary,
-                fontSize: 36,
+                fontSize: 20,
               )),
           SizedBox(
-            width: 600,
+            width: MediaQuery.of(context).size.width * 0.7,
             child: TextField(
               keyboardType: TextInputType.number,
               style: const TextStyle(color: SixxColors.secondary),
