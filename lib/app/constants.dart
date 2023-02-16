@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 enum Navigation { home, gallery, booking, add, login }
 
 class Constants {
-  static const artist = {'name': 'Christian', 'number': '+4670000000'};
+  static const artist = {'name': 'Christian', 'number': '+46761484739'};
   static const artist2 = {'name': 'Emanuel', 'number': '+4670000000'};
   static const String adress = 'Bangårdsgatan 2, 534 30 Vara';
   static final Uri googleUriApple = Uri.parse(

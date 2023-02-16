@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "821778987621",
+    "firebase_url": "https://sixtattoo-898c0-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "sixtattoo-898c0",
     "storage_bucket": "sixtattoo-898c0.appspot.com"
   },
@@ -29,6 +30,13 @@
             {
               "client_id": "821778987621-8gr257b9n5dsmchc9n2c5a32s2pq26nu.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "821778987621-60r0ppst5l3rkh058dtij2bq4mqar870.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sixxTattoo"
+              }
             }
           ]
         }

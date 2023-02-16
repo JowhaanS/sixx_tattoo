@@ -26,11 +26,11 @@ class ImagesCubit extends Cubit<ImagesState> {
     }
     File storedImage = File(imageFile.path);
     bool isStencil = true;
-    final appDir = await syspaths.getApplicationDocumentsDirectory();
-    final fileName = path.basename(imageFile.path);
-    final savedImage =
-        await File(imageFile.path).copy('${appDir.path}/$fileName');
-    imageService.addPicture(isStencil, savedImage, id);
+    // final appDir = await syspaths.getApplicationDocumentsDirectory();
+    // final fileName = path.basename(imageFile.path);
+    // final savedImage =
+    //     await File(imageFile.path).copy('${appDir.path}/$fileName');
+    imageService.addPicture(isStencil, storedImage, id);
   }
 
   void printHelloWorld() {

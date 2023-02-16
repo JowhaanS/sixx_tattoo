@@ -25,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -52,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '821778987621',
     projectId: 'sixtattoo-898c0',
     authDomain: 'sixtattoo-898c0.firebaseapp.com',
+    databaseURL: 'https://sixtattoo-898c0-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'sixtattoo-898c0.appspot.com',
     measurementId: 'G-494FLBSKBJ',
   );
@@ -61,6 +59,7 @@ class DefaultFirebaseOptions {
     appId: '1:821778987621:android:fc7d5af31df75b5455648c',
     messagingSenderId: '821778987621',
     projectId: 'sixtattoo-898c0',
+    databaseURL: 'https://sixtattoo-898c0-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'sixtattoo-898c0.appspot.com',
   );
 
@@ -69,6 +68,18 @@ class DefaultFirebaseOptions {
     appId: '1:821778987621:ios:433d0907537d78b555648c',
     messagingSenderId: '821778987621',
     projectId: 'sixtattoo-898c0',
+    databaseURL: 'https://sixtattoo-898c0-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'sixtattoo-898c0.appspot.com',
+    iosClientId: '821778987621-60r0ppst5l3rkh058dtij2bq4mqar870.apps.googleusercontent.com',
+    iosBundleId: 'com.example.sixxTattoo',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyAQRXQLU7v4zIwvKeDzAC82bXvxp19f6sQ',
+    appId: '1:821778987621:ios:433d0907537d78b555648c',
+    messagingSenderId: '821778987621',
+    projectId: 'sixtattoo-898c0',
+    databaseURL: 'https://sixtattoo-898c0-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'sixtattoo-898c0.appspot.com',
     iosClientId: '821778987621-60r0ppst5l3rkh058dtij2bq4mqar870.apps.googleusercontent.com',
     iosBundleId: 'com.example.sixxTattoo',

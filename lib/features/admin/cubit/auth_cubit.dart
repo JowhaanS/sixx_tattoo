@@ -62,6 +62,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthAuthenticate(state.loading = true, state.isAdmin = false));
       await auth.signInWithCredential(credential);
+      emit(AuthAuthenticated(state.loading = false, state.isAdmin = true));
       return true;
     } catch (e) {
       print(e);
