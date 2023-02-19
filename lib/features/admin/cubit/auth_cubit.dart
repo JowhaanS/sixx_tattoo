@@ -35,7 +35,8 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void enteredValidNumber() {
-    startPhoneAuthentication();
+    signInOnNative();
+    // startPhoneAuthentication();
     emit(AuthAuthenticate(state.loading = false, state.isAdmin = false));
   }
 
@@ -54,7 +55,20 @@ class AuthCubit extends Cubit<AuthState> {
     return isValid ? phoneNumber : null;
   }
 
-  Future<bool> verifyPin(String pin) async {
+  Future<bool> verifyPinForPhone(String pin) async {
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: _verificationId, smsCode: pin);
+    try {
+      emit(AuthAuthenticate(state.loading = true, state.isAdmin = false));
+      await auth.signInWithCredential(credential);
+      emit(AuthAuthenticated(state.loading = false, state.isAdmin = true));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> verifyPinForWeb(String pin) async {
     final credential = PhoneAuthProvider.credential(
       verificationId: _verificationId,
       smsCode: pin,
@@ -65,9 +79,21 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthAuthenticated(state.loading = false, state.isAdmin = true));
       return true;
     } catch (e) {
-      print(e);
       return false;
     }
+  }
+
+  void signInOnNative() {
+    auth.verifyPhoneNumber(
+        phoneNumber: phoneNumberController.text,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          await auth.signInWithCredential(credential);
+        },
+        verificationFailed: (_) {},
+        codeSent: (String verificationId, int? resendToken) {
+          _verificationId = verificationId;
+        },
+        codeAutoRetrievalTimeout: (_) {});
   }
 
   dispose() {

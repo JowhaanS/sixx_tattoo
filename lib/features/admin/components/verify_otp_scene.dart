@@ -30,17 +30,34 @@ class _VerifyOTPScene extends StatelessWidget {
                     controller: bloc.pinController,
                     length: 6,
                     onCompleted: (pin) async {
-                      final bool isSuccess = await bloc.verifyPin(pin);
-                      if (isSuccess) {
-                        Navigator.of(context).pop();
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (ctx) => const LandingScreen()));
+                      if (defaultTargetPlatform != TargetPlatform.windows ||
+                          defaultTargetPlatform != TargetPlatform.macOS) {
+                        final bool ifSuccess =
+                            await bloc.verifyPinForPhone(pin);
+                        if (ifSuccess) {
+                          Navigator.of(context).pop();
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (ctx) => const LandingScreen()));
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(CustomSnackbar.snackBarInvalidPin);
+                          bloc.pinController.text = '';
+                          BlocProvider.of<AuthCubit>(context)
+                              .enteredValidNumber();
+                        }
                       } else {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(CustomSnackbar.snackBarInvalidPin);
-                        bloc.pinController.text = '';
-                        BlocProvider.of<AuthCubit>(context)
-                            .enteredValidNumber();
+                        final bool isSuccess = await bloc.verifyPinForWeb(pin);
+                        if (isSuccess) {
+                          Navigator.of(context).pop();
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (ctx) => const LandingScreen()));
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(CustomSnackbar.snackBarInvalidPin);
+                          bloc.pinController.text = '';
+                          BlocProvider.of<AuthCubit>(context)
+                              .enteredValidNumber();
+                        }
                       }
                     },
                   ),
