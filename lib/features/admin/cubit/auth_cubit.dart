@@ -96,6 +96,11 @@ class AuthCubit extends Cubit<AuthState> {
         codeAutoRetrievalTimeout: (_) {});
   }
 
+  void signOut() {
+    auth.signOut();
+    emit(AuthInitial(false, false));
+  }
+
   dispose() {
     phoneNumberController.dispose();
   }

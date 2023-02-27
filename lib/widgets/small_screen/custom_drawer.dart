@@ -17,48 +17,97 @@ class CustomDrawer extends StatelessWidget {
       backgroundColor: Colors.black87,
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
-          return ListView(children: [
-            Container(
-              //Eventuellt sätta en fräsig bild här(?)
-              color: SixxColors.backGround,
-              width: double.infinity,
-              height: 80,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Ej inloggad",
-                    style: TextStyle(
-                      color: SixxColors.secondary,
-                      fontSize: 20,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              onTap: () {
-                if (state is! AuthAuthenticated) {
-                  Navigator.of(context).pop();
-                  loginDialog(context);
-                } else {}
-              },
-              leading: const Icon(
-                Icons.login,
-                color: SixxColors.secondary,
-              ),
-              title: const Text(
-                'Logga in',
-                style: TextStyle(
-                  color: SixxColors.secondary,
-                  fontSize: 18,
-                ),
-              ),
-            )
-          ]);
+          if (state is AuthAuthenticated) {
+            return listViewIfLoggedIn(state, context);
+          } else {
+            return defaultListView(state, context);
+          }
         },
       ),
     );
+  }
+
+  ListView listViewIfLoggedIn(AuthState state, BuildContext context) {
+    return ListView(children: [
+      Container(
+        //Eventuellt sätta en fräsig bild här(?)
+        color: SixxColors.backGround,
+        width: double.infinity,
+        height: 80,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text(
+              "Inloggad",
+              style: TextStyle(
+                color: SixxColors.secondary,
+                fontSize: 20,
+              ),
+            ),
+          ],
+        ),
+      ),
+      ListTile(
+        onTap: () {
+          BlocProvider.of<AuthCubit>(context).signOut();
+          Navigator.of(context).pop();
+        },
+        leading: const Icon(
+          Icons.logout,
+          color: SixxColors.secondary,
+        ),
+        title: const Text(
+          'Logga ut',
+          style: TextStyle(
+            color: SixxColors.secondary,
+            fontSize: 18,
+          ),
+        ),
+      )
+    ]);
+  }
+
+  ListView defaultListView(AuthState state, BuildContext context) {
+    return ListView(children: [
+      Container(
+        //Eventuellt sätta en fräsig bild här(?)
+        color: SixxColors.backGround,
+        width: double.infinity,
+        height: 80,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text(
+              "Ej inloggad",
+              style: TextStyle(
+                color: SixxColors.secondary,
+                fontSize: 20,
+              ),
+            ),
+          ],
+        ),
+      ),
+      ListTile(
+        onTap: () async {
+          if (state is! AuthAuthenticated) {
+            Navigator.of(context).pop();
+            await loginDialog(context);
+          } else {}
+        },
+        leading: const Icon(
+          Icons.login,
+          color: SixxColors.secondary,
+        ),
+        title: const Text(
+          'Logga in',
+          style: TextStyle(
+            color: SixxColors.secondary,
+            fontSize: 18,
+          ),
+        ),
+      )
+    ]);
   }
 }

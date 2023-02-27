@@ -35,10 +35,12 @@ class _VerifyOTPScene extends StatelessWidget {
                         final bool ifSuccess =
                             await bloc.verifyPinForPhone(pin);
                         if (ifSuccess) {
+                          if (!context.mounted) return;
                           Navigator.of(context).pop();
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (ctx) => const LandingScreen()));
                         } else {
+                          if (!context.mounted) return;
                           ScaffoldMessenger.of(context)
                               .showSnackBar(CustomSnackbar.snackBarInvalidPin);
                           bloc.pinController.text = '';
@@ -48,10 +50,12 @@ class _VerifyOTPScene extends StatelessWidget {
                       } else {
                         final bool isSuccess = await bloc.verifyPinForWeb(pin);
                         if (isSuccess) {
+                          if (!context.mounted) return;
                           Navigator.of(context).pop();
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (ctx) => const LandingScreen()));
                         } else {
+                          if (!context.mounted) return;
                           ScaffoldMessenger.of(context)
                               .showSnackBar(CustomSnackbar.snackBarInvalidPin);
                           bloc.pinController.text = '';
