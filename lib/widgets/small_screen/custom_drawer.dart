@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sixx_tattoo/features/admin/cubit/auth_cubit.dart';
 import 'package:sixx_tattoo/app/constants.dart';
 import 'package:sixx_tattoo/features/admin/login.dart';
-import 'package:sixx_tattoo/widgets/background_image.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({

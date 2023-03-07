@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:path/path.dart' as path;
+// import 'package:path/path.dart' as path;
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart' as syspaths;
+// import 'package:path_provider/path_provider.dart' as syspaths;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sixx_tattoo/features/gallery/services/image_service.dart';
 
@@ -31,10 +31,6 @@ class ImagesCubit extends Cubit<ImagesState> {
     // final savedImage =
     //     await File(imageFile.path).copy('${appDir.path}/$fileName');
     imageService.addPicture(isStencil, storedImage, id);
-  }
-
-  void printHelloWorld() {
-    print('Hello World');
   }
 
   void saveImage() {}

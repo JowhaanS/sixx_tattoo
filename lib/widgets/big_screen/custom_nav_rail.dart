@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sixx_tattoo/features/admin/login.dart';
-import 'package:sixx_tattoo/widgets/background_image.dart';
 
 import '../../app/constants.dart';
 import '../../custom_icon_icons.dart';
