@@ -20,12 +20,14 @@ class _RegisterationScene extends StatelessWidget {
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.7,
             child: TextField(
+              maxLength: 20,
+              focusNode: bloc.focusNode,
               keyboardType: TextInputType.number,
               style: const TextStyle(color: SixxColors.secondary),
               cursorColor: SixxColors.secondary,
               controller: bloc.phoneNumberController,
               onChanged: (value) => bloc.validateNumber(),
-              onSubmitted: (value) {
+              onEditingComplete: () {
                 if (bloc.checkIfPhoneNumberEmpty()) {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(CustomSnackbar.snackBarPhoneNumberEmpty);

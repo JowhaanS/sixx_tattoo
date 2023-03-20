@@ -33,26 +33,33 @@ class _CustomTabBarState extends State<CustomTabBar> {
           },
           items: [
             const BottomNavigationBarItem(
-                label: 'Home',
-                icon: Icon(
-                  Icons.home_outlined,
-                )),
+              label: 'Home',
+              icon: Icon(
+                Icons.home_outlined,
+              ),
+              backgroundColor: SixxColors.backGround,
+            ),
             const BottomNavigationBarItem(
-                label: 'Gallery',
-                icon: Icon(
-                  Icons.bookmark_border,
-                )),
+              label: 'Gallery',
+              icon: Icon(
+                Icons.bookmark_border,
+              ),
+              backgroundColor: SixxColors.backGround,
+            ),
             const BottomNavigationBarItem(
-                label: 'Book',
-                icon: Icon(
-                  Icons.calendar_month_outlined,
-                )),
+              label: 'Book',
+              icon: Icon(
+                Icons.calendar_month_outlined,
+              ),
+              backgroundColor: SixxColors.backGround,
+            ),
             if (state is AuthAuthenticated)
               const BottomNavigationBarItem(
                 label: 'Add image',
                 icon: Icon(
                   Icons.add_a_photo_outlined,
                 ),
+                backgroundColor: SixxColors.backGround,
               )
           ],
         );

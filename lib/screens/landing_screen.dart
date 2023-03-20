@@ -22,63 +22,43 @@ class LandingScreen extends StatelessWidget {
     BlocProvider.of<AuthCubit>(context).checkIfAdmin();
     bool isScreenBig = MediaQuery.of(context).size.width >= 480;
     return Scaffold(
-        appBar: isScreenBig
-            ? null
-            : AppBar(
-                centerTitle: true,
-                title: const Text('Sixx Tattoo'),
-                backgroundColor: SixxColors.backGround,
-                foregroundColor: SixxColors.secondary,
-                actions: [
-                  IconButton(
-                    onPressed: () {
-                      {
-                        if (defaultTargetPlatform == TargetPlatform.iOS) {
-                          launchUrl(Constants.googleUriApple);
-                        } else {
-                          launchUrl(Constants.googleUriAndroid);
-                        }
+      backgroundColor: SixxColors.backGround,
+      appBar: isScreenBig
+          ? null
+          : AppBar(
+              centerTitle: true,
+              title: const Text('Sixx Tattoo'),
+              backgroundColor: SixxColors.backGround,
+              foregroundColor: SixxColors.secondary,
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    {
+                      if (defaultTargetPlatform == TargetPlatform.iOS) {
+                        launchUrl(Constants.googleUriApple);
+                      } else {
+                        launchUrl(Constants.googleUriAndroid);
                       }
-                    },
-                    icon: const Icon(
-                      Icons.location_on_outlined,
-                      color: SixxColors.secondary,
-                    ),
-                  )
-                ],
+                    }
+                  },
+                  icon: const Icon(
+                    Icons.location_on_outlined,
+                    color: SixxColors.secondary,
+                  ),
+                )
+              ],
+            ),
+      drawer: const CustomDrawer(),
+      body: isScreenBig
+          ? Row(children: [
+              const CustomNavRail(),
+              const VerticalDivider(
+                thickness: 6,
+                width: 6,
+                color: SixxColors.primary,
               ),
-        drawer: const CustomDrawer(),
-        body: isScreenBig
-            ? Row(children: [
-                const CustomNavRail(),
-                const VerticalDivider(
-                  thickness: 6,
-                  width: 6,
-                  color: SixxColors.primary,
-                ),
-                Expanded(
-                  child: BlocBuilder<NavigationCubit, NavigationState>(
-                      builder: (context, state) {
-                    if (state is NavigationHome) {
-                      return const HomeScreen();
-                    }
-                    if (state is NavigationGallery) {
-                      return const GalleryScreen();
-                    }
-                    if (state is NavigationBooking) {
-                      return const BookingScreen();
-                    }
-                    if (state is NavigationAdd) {
-                      return const AddPictureScreen();
-                    }
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }),
-                ),
-              ])
-            : Scaffold(
-                body: BlocBuilder<NavigationCubit, NavigationState>(
+              Expanded(
+                child: BlocBuilder<NavigationCubit, NavigationState>(
                     builder: (context, state) {
                   if (state is NavigationHome) {
                     return const HomeScreen();
@@ -96,7 +76,27 @@ class LandingScreen extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 }),
-                bottomNavigationBar: const CustomTabBar(),
-              ));
+              ),
+            ])
+          : BlocBuilder<NavigationCubit, NavigationState>(
+              builder: (context, state) {
+              if (state is NavigationHome) {
+                return const HomeScreen();
+              }
+              if (state is NavigationGallery) {
+                return const GalleryScreen();
+              }
+              if (state is NavigationBooking) {
+                return const BookingScreen();
+              }
+              if (state is NavigationAdd) {
+                return const AddPictureScreen();
+              }
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }),
+      bottomNavigationBar: const CustomTabBar(),
+    );
   }
 }

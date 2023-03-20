@@ -8,8 +8,8 @@ class Constants {
   static const String adress = 'Bangårdsgatan 2, 534 30 Vara';
   static final Uri googleUriApple = Uri.parse(
       'https://maps.apple.com/?address=Bang%C3%A5rdsgatan%202,%20534%2030%20Vara,%20Sweden&ll=58.260833,12.950231&q=Bang%C3%A5rdsgatan%202');
-  static final Uri googleUriAndroid = Uri.parse(
-      'https://www.google.com/maps/place/Sixx+tattoo+studio/@58.2607938,12.9502927,17z/data=!3m1!4b1!4m5!3m4!1s0x465acf12b11680df:0x1eadd778d3c3fc76!8m2!3d58.2608436!4d12.9504061');
+  static final Uri googleUriAndroid =
+      Uri.parse('https://goo.gl/maps/SRmZi9KP1FVbA9gDA');
 }
 
 class SixxColors {

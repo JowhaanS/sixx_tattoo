@@ -11,6 +11,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   late String _verificationId;
   final auth = FirebaseAuth.instance;
+  final focusNode = FocusNode();
   final pinController = TextEditingController(text: null);
   final phoneNumberController = TextEditingController(text: '+46');
 
@@ -51,7 +52,10 @@ class AuthCubit extends Cubit<AuthState> {
         : phoneNumber;
     if (phoneNumber.isEmpty) return null;
     final bool isValid =
-        phoneNumber.contains('+') ? false : phoneNumber.characters.length >= 10;
+        phoneNumber.contains('+') ? false : phoneNumber.characters.length >= 11;
+    if (isValid) {
+      focusNode.unfocus();
+    }
     return isValid ? phoneNumber : null;
   }
 

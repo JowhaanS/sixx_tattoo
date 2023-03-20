@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "821778987621-45do4l83vcphfeud5fkel2oh5pqip9ct.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sixx_tattoo",
+            "certificate_hash": "7d2c297e0ca70b85d622f3407f99f5704d947150"
+          }
+        },
+        {
           "client_id": "821778987621-8gr257b9n5dsmchc9n2c5a32s2pq26nu.apps.googleusercontent.com",
           "client_type": 3
         }
