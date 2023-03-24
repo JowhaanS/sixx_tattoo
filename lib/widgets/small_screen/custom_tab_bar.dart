@@ -29,6 +29,9 @@ class _CustomTabBarState extends State<CustomTabBar> {
               _selectedIndex = index;
               BlocProvider.of<NavigationCubit>(context)
                   .setScreen(Navigation.values[_selectedIndex]);
+              // if (state is! AuthAuthenticated && _selectedIndex == 3) {
+              //   _selectedIndex = 0;
+              // }
             });
           },
           items: [

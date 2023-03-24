@@ -55,6 +55,7 @@ class AuthCubit extends Cubit<AuthState> {
         phoneNumber.contains('+') ? false : phoneNumber.characters.length >= 11;
     if (isValid) {
       focusNode.unfocus();
+      enteredValidNumber();
     }
     return isValid ? phoneNumber : null;
   }

@@ -11,4 +11,24 @@ class Image {
     required this.isStencil,
     required this.timeStamp,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'author': author,
+      'imageUrl': imageUrl,
+      'isStencil': isStencil,
+      'timeStamp': timeStamp,
+    };
+  }
+
+  factory Image.fromJson(Map<String, dynamic> json) {
+    return Image(
+      id: json['id'],
+      author: json['author'],
+      imageUrl: json['imageUrl'],
+      isStencil: json['isStencil'],
+      timeStamp: json['timeStamp'],
+    );
+  }
 }

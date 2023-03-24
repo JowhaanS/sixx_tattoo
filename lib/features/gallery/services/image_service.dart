@@ -14,51 +14,60 @@ class ImageService {
   FirebaseDatabase database = FirebaseDatabase.instance;
   // DatabaseReference bookingRef = FirebaseDatabase.instance.ref("booking");
   final storageRef = FirebaseStorage.instance.ref();
-  DatabaseReference imagesRef = FirebaseDatabase.instance.ref("images");
 
-  Future<String> addTatto(File file) async {
-    final tattooOnStorageRef = storageRef.child('images').child(file.path);
+  Future<String> _addTatto(File file, String id) async {
+    final String fileName = file.path.split('/').last;
+    final tattooOnStorageRef = storageRef.child(id).child(fileName);
     try {
       await tattooOnStorageRef.putFile(file);
       final imageUrl = await tattooOnStorageRef.getDownloadURL();
       return imageUrl;
     } on FirebaseException catch (e) {
-      print(e);
+      return 'Error: + $e';
     }
-    return 'Error';
   }
 
-  Future<String> addStencil(File file) async {
-    final stencilOnStorageRef = storageRef.child('stencils').child(file.path);
+  Future<String> _addStencil(File file, String id) async {
+    final stencilOnStorageRef = storageRef.child(id).child(file.path);
     try {
       await stencilOnStorageRef.putFile(file);
       final imageUrl = await stencilOnStorageRef.getDownloadURL();
       return imageUrl;
     } on FirebaseException catch (e) {
-      print(e);
+      return 'Error: $e';
     }
-    return 'Error';
   }
 
-  void addPicture(bool isStencil, File file, String auth) async {
+  Future<bool> addPicture(bool isStencil, File file, String id) async {
+    DatabaseReference imagesRef = FirebaseDatabase.instance.ref('images/$id');
     if (!isStencil) {
-      String imageUrl = await addTatto(file);
-      imagesRef.set(Image(
-        id: uuid.v4(),
-        author: auth,
-        imageUrl: imageUrl,
-        isStencil: isStencil,
-        timeStamp: DateTime.now().toIso8601String(),
-      ));
+      String imageUrl = await _addTatto(file, id);
+      try {
+        imagesRef.push().set(Image(
+              id: uuid.v4(),
+              author: id,
+              imageUrl: imageUrl,
+              isStencil: isStencil,
+              timeStamp: DateTime.now().toIso8601String(),
+            ).toJson());
+        return true;
+      } catch (e) {
+        return false;
+      }
     } else {
-      String imageUrl = await addStencil(file);
-      imagesRef.set(Image(
-        id: uuid.v4(),
-        author: auth,
-        imageUrl: imageUrl,
-        isStencil: isStencil,
-        timeStamp: DateTime.now().toIso8601String(),
-      ));
+      String imageUrl = await _addStencil(file, id);
+      try {
+        imagesRef.push().set(Image(
+              id: uuid.v4(),
+              author: id,
+              imageUrl: imageUrl,
+              isStencil: isStencil,
+              timeStamp: DateTime.now().toIso8601String(),
+            ).toJson());
+        return true;
+      } catch (e) {
+        return false;
+      }
     }
   }
 }

@@ -18,14 +18,10 @@ class ImagesLoading extends ImagesState {
   ImagesLoading(super._images);
 }
 
-class ImagesDefault extends ImagesState {
-  ImagesDefault(super._images);
+class ImagesUploadSuccess extends ImagesState {
+  ImagesUploadSuccess(super._images);
 }
 
-class ImagesByAuth extends ImagesState {
-  ImagesByAuth(super._images);
-}
-
-class StencilImagesByAuth extends ImagesState {
-  StencilImagesByAuth(super._images);
+class ImagesUploadDenied extends ImagesState {
+  ImagesUploadDenied(super._images);
 }

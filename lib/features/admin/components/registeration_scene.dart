@@ -27,17 +27,6 @@ class _RegisterationScene extends StatelessWidget {
               cursorColor: SixxColors.secondary,
               controller: bloc.phoneNumberController,
               onChanged: (value) => bloc.validateNumber(),
-              onEditingComplete: () {
-                if (bloc.checkIfPhoneNumberEmpty()) {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(CustomSnackbar.snackBarPhoneNumberEmpty);
-                } else if (bloc.validateNumber() == null) {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(CustomSnackbar.snackBarInvalidNumber);
-                } else {
-                  bloc.enteredValidNumber();
-                }
-              },
               decoration: const InputDecoration(
                 icon: Icon(
                   Icons.phone,
