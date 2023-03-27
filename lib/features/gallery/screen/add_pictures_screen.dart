@@ -42,6 +42,10 @@ class AddPictureScreen extends StatelessWidget {
               onPressed: () {
                 BlocProvider.of<ImagesCubit>(context).takePicture(
                   BlocProvider.of<AuthCubit>(context).auth.currentUser!.uid,
+                  BlocProvider.of<AuthCubit>(context)
+                      .auth
+                      .currentUser!
+                      .phoneNumber!,
                 );
                 Navigator.of(context).pop();
               },
@@ -59,6 +63,10 @@ class AddPictureScreen extends StatelessWidget {
               onPressed: () {
                 BlocProvider.of<ImagesCubit>(context).choosePicture(
                   BlocProvider.of<AuthCubit>(context).auth.currentUser!.uid,
+                  BlocProvider.of<AuthCubit>(context)
+                      .auth
+                      .currentUser!
+                      .phoneNumber!,
                 );
                 Navigator.of(context).pop();
               },
@@ -114,6 +122,10 @@ class AddPictureScreen extends StatelessWidget {
                   onPressed: () {
                     BlocProvider.of<ImagesCubit>(context).choosePicture(
                       BlocProvider.of<AuthCubit>(context).auth.currentUser!.uid,
+                      BlocProvider.of<AuthCubit>(context)
+                          .auth
+                          .currentUser!
+                          .phoneNumber!,
                     );
                     // Straight to gallery for uploading
                     // BlocProvider.of<ImagesCubit>(context).takePicture(

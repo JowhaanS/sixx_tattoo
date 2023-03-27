@@ -38,14 +38,15 @@ class ImageService {
     }
   }
 
-  Future<bool> addPicture(bool isStencil, File file, String id) async {
+  Future<bool> addPicture(
+      bool isStencil, File file, String id, String number) async {
     DatabaseReference imagesRef = FirebaseDatabase.instance.ref('images/$id');
     if (!isStencil) {
       String imageUrl = await _addTatto(file, id);
       try {
         imagesRef.push().set(Image(
               id: uuid.v4(),
-              author: id,
+              author: number,
               imageUrl: imageUrl,
               isStencil: isStencil,
               timeStamp: DateTime.now().toIso8601String(),
@@ -59,7 +60,7 @@ class ImageService {
       try {
         imagesRef.push().set(Image(
               id: uuid.v4(),
-              author: id,
+              author: number,
               imageUrl: imageUrl,
               isStencil: isStencil,
               timeStamp: DateTime.now().toIso8601String(),
