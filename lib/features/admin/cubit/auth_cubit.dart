@@ -17,7 +17,8 @@ class AuthCubit extends Cubit<AuthState> {
 
   void checkIfAdmin() {
     if (FirebaseAuth.instance.currentUser != null &&
-        auth.currentUser!.phoneNumber == Constants.artist['number']) {
+            auth.currentUser!.phoneNumber == Constants.artist['number'] ||
+        auth.currentUser!.phoneNumber == Constants.artist2['number']) {
       {
         emit(AuthAuthenticated(state.loading = false, state.isAdmin = true));
       }
@@ -60,20 +61,19 @@ class AuthCubit extends Cubit<AuthState> {
     return isValid ? phoneNumber : null;
   }
 
-  Future<bool> verifyPinForPhone(String pin) async {
+  void verifyPinForPhone(BuildContext context, String pin) async {
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: _verificationId, smsCode: pin);
     try {
       emit(AuthAuthenticate(state.loading = true, state.isAdmin = false));
       await auth.signInWithCredential(credential);
-      emit(AuthAuthenticated(state.loading = false, state.isAdmin = true));
-      return true;
+      emit(AuthAuthenticated(state.loading = false, state.isAdmin = false));
     } catch (e) {
-      return false;
+      invalidPin(context);
     }
   }
 
-  Future<bool> verifyPinForWeb(String pin) async {
+  void verifyPinForWeb(BuildContext context, String pin) async {
     final credential = PhoneAuthProvider.credential(
       verificationId: _verificationId,
       smsCode: pin,
@@ -81,10 +81,9 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthAuthenticate(state.loading = true, state.isAdmin = false));
       await auth.signInWithCredential(credential);
-      emit(AuthAuthenticated(state.loading = false, state.isAdmin = true));
-      return true;
+      emit(AuthAuthenticated(state.loading = false, state.isAdmin = false));
     } catch (e) {
-      return false;
+      invalidPin(context);
     }
   }
 
@@ -104,6 +103,12 @@ class AuthCubit extends Cubit<AuthState> {
   void signOut() {
     auth.signOut();
     emit(AuthInitial(false, false));
+  }
+
+  void invalidPin(BuildContext context) {
+    pinController.text = '';
+    ScaffoldMessenger.of(context)
+        .showSnackBar(CustomSnackbar.snackBarInvalidPin);
   }
 
   dispose() {

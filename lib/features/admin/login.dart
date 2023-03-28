@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sixx_tattoo/app/constants.dart';
-import 'package:sixx_tattoo/screens/landing_screen.dart';
 import 'package:sixx_tattoo/widgets/background_image.dart';
 
 import 'cubit/auth_cubit.dart';

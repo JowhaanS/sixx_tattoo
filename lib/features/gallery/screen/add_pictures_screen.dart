@@ -93,15 +93,8 @@ class AddPictureScreen extends StatelessWidget {
     return BlocListener<ImagesCubit, ImagesState>(
       listener: (context, state) {
         if (state is ImagesUploadSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text(
-              'Image uploaded successfully!',
-              style: TextStyle(
-                color: SixxColors.secondary,
-              ),
-            ),
-            backgroundColor: SixxColors.primary,
-          ));
+          ScaffoldMessenger.of(context)
+              .showSnackBar(CustomSnackbar.snackBarUploadSuccess);
         }
       },
       child: Stack(children: [
@@ -127,10 +120,6 @@ class AddPictureScreen extends StatelessWidget {
                           .currentUser!
                           .phoneNumber!,
                     );
-                    // Straight to gallery for uploading
-                    // BlocProvider.of<ImagesCubit>(context).takePicture(
-                    //   BlocProvider.of<AuthCubit>(context).auth.currentUser!.uid,
-                    // );
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: SixxColors.primary),

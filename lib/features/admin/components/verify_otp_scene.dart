@@ -29,39 +29,12 @@ class _VerifyOTPScene extends StatelessWidget {
                   Pinput(
                     controller: bloc.pinController,
                     length: 6,
-                    onCompleted: (pin) async {
+                    onCompleted: (pin) {
                       if (defaultTargetPlatform != TargetPlatform.windows ||
                           defaultTargetPlatform != TargetPlatform.macOS) {
-                        final bool ifSuccess =
-                            await bloc.verifyPinForPhone(pin);
-                        if (ifSuccess) {
-                          if (!context.mounted) return;
-                          Navigator.of(context).pop();
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (ctx) => const LandingScreen()));
-                        } else {
-                          if (!context.mounted) return;
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(CustomSnackbar.snackBarInvalidPin);
-                          bloc.pinController.text = '';
-                          BlocProvider.of<AuthCubit>(context)
-                              .enteredValidNumber();
-                        }
+                        bloc.verifyPinForPhone(context, pin);
                       } else {
-                        final bool isSuccess = await bloc.verifyPinForWeb(pin);
-                        if (isSuccess) {
-                          if (!context.mounted) return;
-                          Navigator.of(context).pop();
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (ctx) => const LandingScreen()));
-                        } else {
-                          if (!context.mounted) return;
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(CustomSnackbar.snackBarInvalidPin);
-                          bloc.pinController.text = '';
-                          BlocProvider.of<AuthCubit>(context)
-                              .enteredValidNumber();
-                        }
+                        bloc.verifyPinForWeb(context, pin);
                       }
                     },
                   ),
@@ -74,15 +47,3 @@ class _VerifyOTPScene extends StatelessWidget {
           );
   }
 }
-// final _defaultPinTheme = PinTheme(
-//   width: 56,
-//   height: 56,
-//   textStyle: const TextStyle(
-//       fontSize: 20,
-//       color: Color.fromRGBO(30, 60, 87, 1),
-//       fontWeight: FontWeight.w600),
-//   decoration: BoxDecoration(
-//     border: Border.all(color: const Color.fromRGBO(234, 239, 243, 1)),
-//     borderRadius: BorderRadius.circular(20),
-//   ),
-// );

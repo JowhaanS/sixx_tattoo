@@ -4,7 +4,7 @@ enum Navigation { home, gallery, booking, add, login }
 
 class Constants {
   static const artist = {'name': 'Christian', 'number': '+46761484739'};
-  static const artist2 = {'name': 'Emanuel', 'number': '+4670000000'};
+  static const artist2 = {'name': 'Emanuel', 'number': '+46701598058'};
   static const String adress = 'Bangårdsgatan 2, 534 30 Vara';
   static final Uri googleUriApple = Uri.parse(
       'https://maps.apple.com/?address=Bang%C3%A5rdsgatan%202,%20534%2030%20Vara,%20Sweden&ll=58.260833,12.950231&q=Bang%C3%A5rdsgatan%202');
@@ -19,26 +19,6 @@ class SixxColors {
 }
 
 class CustomSnackbar {
-  static const snackBarPhoneNumberEmpty = SnackBar(
-    backgroundColor: SixxColors.primary,
-    content: Text(
-      textAlign: TextAlign.center,
-      'Du måste ange ett telefonnummer!',
-      style: TextStyle(
-        color: SixxColors.secondary,
-      ),
-    ),
-  );
-  static const snackBarInvalidNumber = SnackBar(
-    backgroundColor: SixxColors.primary,
-    content: Text(
-      textAlign: TextAlign.center,
-      'Du måste ange ett giltligt telefonnummer!',
-      style: TextStyle(
-        color: SixxColors.secondary,
-      ),
-    ),
-  );
   static const snackBarInvalidPin = SnackBar(
     backgroundColor: SixxColors.primary,
     content: Text(
@@ -47,5 +27,15 @@ class CustomSnackbar {
         style: TextStyle(
           color: SixxColors.secondary,
         )),
+  );
+  static const snackBarUploadSuccess = SnackBar(
+    content: Text(
+      'Image uploaded successfully!',
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        color: SixxColors.secondary,
+      ),
+    ),
+    backgroundColor: SixxColors.primary,
   );
 }
