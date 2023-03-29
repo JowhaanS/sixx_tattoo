@@ -16,10 +16,9 @@ class AuthCubit extends Cubit<AuthState> {
   final phoneNumberController = TextEditingController(text: '+46');
 
   void checkIfAdmin() {
-    if (FirebaseAuth.instance.currentUser != null &&
-            auth.currentUser!.phoneNumber == Constants.artist['number'] ||
-        auth.currentUser!.phoneNumber == Constants.artist2['number']) {
-      {
+    if (FirebaseAuth.instance.currentUser != null) {
+      if (auth.currentUser!.phoneNumber == Constants.artist['number'] ||
+          auth.currentUser!.phoneNumber == Constants.artist2['number']) {
         emit(AuthAuthenticated(state.loading = false, state.isAdmin = true));
       }
     }
