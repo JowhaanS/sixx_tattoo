@@ -1,8 +1,9 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sixx_tattoo/app/constants.dart';
+import 'package:auth_buttons/auth_buttons.dart';
 import 'package:sixx_tattoo/widgets/background_image.dart';
 
 import 'cubit/auth_cubit.dart';

@@ -10,15 +10,23 @@ class _RegisterationScene extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const Text('Registrera användare',
-              style: TextStyle(
-                color: SixxColors.secondary,
-                fontSize: 20,
-              )),
+          const Divider(
+            height: 30,
+          ),
+          const Text(
+            'Registrera användare',
+            style: TextStyle(
+              color: SixxColors.secondary,
+              fontSize: 20,
+            ),
+          ),
+          const Divider(
+            height: 30,
+          ),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.7,
+            width: MediaQuery.of(context).size.width * 0.6,
             child: TextField(
               maxLength: 20,
               focusNode: bloc.focusNode,
@@ -49,6 +57,40 @@ class _RegisterationScene extends StatelessWidget {
               ),
             ),
           ),
+          const Divider(
+            height: 20,
+          ),
+          const Text(
+            '-- Eller --',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: SixxColors.secondary,
+              fontSize: 20,
+            ),
+          ),
+          if (defaultTargetPlatform == TargetPlatform.iOS)
+            AppleAuthButton(
+              onPressed: () {},
+              style: AuthButtonStyle(
+                width: MediaQuery.of(context).size.width * 0.65,
+                buttonColor: SixxColors.primary,
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: SixxColors.secondary,
+                ),
+              ),
+            ),
+          GoogleAuthButton(
+            onPressed: () {},
+            style: AuthButtonStyle(
+              width: MediaQuery.of(context).size.width * 0.65,
+              buttonColor: SixxColors.primary,
+              textStyle: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: SixxColors.secondary,
+              ),
+            ),
+          )
         ],
       ),
     );
