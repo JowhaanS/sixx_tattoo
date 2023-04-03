@@ -9,6 +9,8 @@ import 'package:firebase_database/firebase_database.dart';
 import '../models/image.dart';
 
 class ImageService {
+  Map<dynamic, dynamic> _data = {};
+  int _itemsCounter = 1;
   var uuid = const Uuid();
   final storage = FirebaseStorage.instance;
   FirebaseDatabase database = FirebaseDatabase.instance;
@@ -73,7 +75,7 @@ class ImageService {
   }
 
   Future<Map<dynamic, dynamic>> getAllImages() async {
-    Map<dynamic, dynamic> data = {};
+    if (_data.length == _itemsCounter) return {};
     final ref = database.ref();
     await ref.child('images').once(DatabaseEventType.value).then((value) {
       final rawData = value.snapshot.children.fold<Map<dynamic, dynamic>>(
@@ -83,8 +85,9 @@ class ImageService {
           return map;
         },
       );
-      data = rawData;
+      _data = rawData;
+      _itemsCounter = _data.length;
     });
-    return data;
+    return _data;
   }
 }

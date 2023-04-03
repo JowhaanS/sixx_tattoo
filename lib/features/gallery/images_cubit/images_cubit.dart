@@ -53,8 +53,8 @@ class ImagesCubit extends Cubit<ImagesState> {
   void fetchAndSetImages() async {
     emit(ImagesLoading(state.images));
     final rawImages = await imageService.getAllImages();
-    if (state._images.length >= rawImages.length) {
-      emit(ImagesInitial(state.images));
+    if (rawImages.isEmpty) {
+      emit(ImagesInitial(state._images));
       return;
     }
     rawImages.forEach((key, value) {
