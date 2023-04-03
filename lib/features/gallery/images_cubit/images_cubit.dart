@@ -22,7 +22,7 @@ class ImagesCubit extends Cubit<ImagesState> {
     );
     if (photo != null) {
       File file = File(photo.path);
-      _didUpload = await imageService.addPicture(false, file, id, number);
+      _didUpload = await imageService.addPicture(false, file, number);
       if (_didUpload) {
         emit(ImagesUploadSuccess(state.images));
       } else {
@@ -40,7 +40,7 @@ class ImagesCubit extends Cubit<ImagesState> {
     );
     if (image != null) {
       File file = File(image.path);
-      _didUpload = await imageService.addPicture(false, file, id, number);
+      _didUpload = await imageService.addPicture(false, file, number);
       if (_didUpload) {
         emit(ImagesUploadSuccess(state.images));
       } else {
@@ -50,5 +50,21 @@ class ImagesCubit extends Cubit<ImagesState> {
     return;
   }
 
-  void fetchAndSetImages() {}
+  void fetchAndSetImages() async {
+    emit(ImagesLoading(state.images));
+    final rawImages = await imageService.getAllImages();
+    if (state._images.length >= rawImages.length) {
+      emit(ImagesInitial(state.images));
+      return;
+    }
+    rawImages.forEach((key, value) {
+      state._images.add(Image(
+          id: value['id'],
+          author: value['author'],
+          imageUrl: value['imageUrl'],
+          isStencil: value['isStencil'],
+          timeStamp: value['timeStamp']));
+    });
+    emit(ImagesInitial(state.images));
+  }
 }

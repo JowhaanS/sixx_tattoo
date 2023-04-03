@@ -15,9 +15,9 @@ class ImageService {
   // DatabaseReference bookingRef = FirebaseDatabase.instance.ref("booking");
   final storageRef = FirebaseStorage.instance.ref();
 
-  Future<String> _addTatto(File file, String id) async {
+  Future<String> _addTatto(File file) async {
     final String fileName = file.path.split('/').last;
-    final tattooOnStorageRef = storageRef.child(id).child(fileName);
+    final tattooOnStorageRef = storageRef.child('images').child(fileName);
     try {
       await tattooOnStorageRef.putFile(file);
       final imageUrl = await tattooOnStorageRef.getDownloadURL();
@@ -27,8 +27,9 @@ class ImageService {
     }
   }
 
-  Future<String> _addStencil(File file, String id) async {
-    final stencilOnStorageRef = storageRef.child(id).child(file.path);
+  Future<String> _addStencil(File file) async {
+    final String fileName = file.path.split('/').last;
+    final stencilOnStorageRef = storageRef.child('images').child(fileName);
     try {
       await stencilOnStorageRef.putFile(file);
       final imageUrl = await stencilOnStorageRef.getDownloadURL();
@@ -38,11 +39,10 @@ class ImageService {
     }
   }
 
-  Future<bool> addPicture(
-      bool isStencil, File file, String id, String number) async {
-    DatabaseReference imagesRef = FirebaseDatabase.instance.ref('images/$id');
+  Future<bool> addPicture(bool isStencil, File file, String number) async {
+    DatabaseReference imagesRef = FirebaseDatabase.instance.ref('images');
     if (!isStencil) {
-      String imageUrl = await _addTatto(file, id);
+      String imageUrl = await _addTatto(file);
       try {
         imagesRef.push().set(Image(
               id: uuid.v4(),
@@ -56,7 +56,7 @@ class ImageService {
         return false;
       }
     } else {
-      String imageUrl = await _addStencil(file, id);
+      String imageUrl = await _addStencil(file);
       try {
         imagesRef.push().set(Image(
               id: uuid.v4(),
@@ -70,5 +70,21 @@ class ImageService {
         return false;
       }
     }
+  }
+
+  Future<Map<dynamic, dynamic>> getAllImages() async {
+    Map<dynamic, dynamic> data = {};
+    final ref = database.ref();
+    await ref.child('images').once(DatabaseEventType.value).then((value) {
+      final rawData = value.snapshot.children.fold<Map<dynamic, dynamic>>(
+        {},
+        (Map<dynamic, dynamic> map, DataSnapshot childSnapshot) {
+          map[childSnapshot.key] = childSnapshot.value;
+          return map;
+        },
+      );
+      data = rawData;
+    });
+    return data;
   }
 }
