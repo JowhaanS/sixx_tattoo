@@ -10,7 +10,7 @@ class GalleryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<ImagesCubit>(context).fetchAndSetImages();
+    BlocProvider.of<ImagesCubit>(context).fetchImageData();
     return BlocBuilder<ImagesCubit, ImagesState>(
       builder: (context, state) {
         return state is ImagesLoading

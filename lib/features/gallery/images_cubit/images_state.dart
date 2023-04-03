@@ -3,10 +3,6 @@ part of 'images_cubit.dart';
 abstract class ImagesState {
   final List<Image> _images;
 
-  List<Image> get images {
-    return [..._images];
-  }
-
   ImagesState(this._images);
 }
 

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sixx_tattoo/app/constants.dart';
 import 'package:sixx_tattoo/features/gallery/services/image_service.dart';
 
 import '../models/image.dart';
@@ -24,9 +25,9 @@ class ImagesCubit extends Cubit<ImagesState> {
       File file = File(photo.path);
       _didUpload = await imageService.addPicture(false, file, number);
       if (_didUpload) {
-        emit(ImagesUploadSuccess(state.images));
+        emit(ImagesUploadSuccess(state._images));
       } else {
-        emit(ImagesUploadDenied(state.images));
+        emit(ImagesUploadDenied(state._images));
       }
     }
     return;
@@ -42,16 +43,16 @@ class ImagesCubit extends Cubit<ImagesState> {
       File file = File(image.path);
       _didUpload = await imageService.addPicture(false, file, number);
       if (_didUpload) {
-        emit(ImagesUploadSuccess(state.images));
+        emit(ImagesUploadSuccess(state._images));
       } else {
-        emit(ImagesUploadDenied(state.images));
+        emit(ImagesUploadDenied(state._images));
       }
     }
     return;
   }
 
-  void fetchAndSetImages() async {
-    emit(ImagesLoading(state.images));
+  void fetchImageData() async {
+    emit(ImagesLoading(state._images));
     final rawImages = await imageService.getAllImages();
     if (rawImages.isEmpty) {
       emit(ImagesInitial(state._images));
@@ -65,6 +66,46 @@ class ImagesCubit extends Cubit<ImagesState> {
           isStencil: value['isStencil'],
           timeStamp: value['timeStamp']));
     });
-    emit(ImagesInitial(state.images));
+    emit(ImagesInitial(state._images));
+  }
+
+  List<Image> showOnlyChristianTattoos() {
+    return state._images
+        .where((image) =>
+            image.author == Constants.artist['number'] &&
+            image.isStencil == false)
+        .toList();
+  }
+
+  List<Image> showOnlyEmanuelTattoos() {
+    return state._images
+        .where((image) =>
+            image.author == Constants.artist2['number'] &&
+            image.isStencil == false)
+        .toList();
+  }
+
+  List<Image> showOnlyChristianStencils() {
+    return state._images
+        .where((image) =>
+            image.author == Constants.artist['number'] &&
+            image.isStencil == true)
+        .toList();
+  }
+
+  List<Image> showOnlyEmanuelStencils() {
+    return state._images
+        .where((image) =>
+            image.author == Constants.artist2['number'] &&
+            image.isStencil == true)
+        .toList();
+  }
+
+  List<Image> showAllTattoos() {
+    return state._images.where((image) => image.isStencil == false).toList();
+  }
+
+  List<Image> showAllStencils() {
+    return state._images.where((image) => image.isStencil == true).toList();
   }
 }

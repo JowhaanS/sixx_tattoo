@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 enum Navigation { home, gallery, booking, add, login }
 
+enum FilterOptions { all, christian, emanuel, christianStencil, emanuelStencil }
+
 class Constants {
   static const artist = {'name': 'Christian', 'number': '+46761484739'};
   static const artist2 = {'name': 'Emanuel', 'number': '+46701598058'};
