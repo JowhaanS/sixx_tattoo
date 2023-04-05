@@ -4,6 +4,7 @@ import 'package:sixx_tattoo/app/constants.dart';
 import 'package:sixx_tattoo/features/gallery/images_cubit/images_cubit.dart';
 
 import '../../../widgets/background_image.dart';
+import '../widgets/gallery_grid.dart';
 
 class GalleryScreen extends StatelessWidget {
   const GalleryScreen({super.key});
@@ -34,7 +35,7 @@ class GalleryScreen extends StatelessWidget {
                   ],
                 ),
               ])
-            : Text('data');
+            : const GalleryGrid();
       },
     );
   }

@@ -13,7 +13,7 @@ class ImagesCubit extends Cubit<ImagesState> {
   final imagePicker = ImagePicker();
   late ImageService imageService = ImageService();
   XFile? pickedImage;
-  ImagesCubit() : super(ImagesInitial([]));
+  ImagesCubit() : super(ImagesInitial([], []));
 
   Future<void> takePicture(String id, String number) async {
     final XFile? photo = await imagePicker.pickImage(
@@ -25,9 +25,9 @@ class ImagesCubit extends Cubit<ImagesState> {
       File file = File(photo.path);
       _didUpload = await imageService.addPicture(false, file, number);
       if (_didUpload) {
-        emit(ImagesUploadSuccess(state._images));
+        emit(ImagesUploadSuccess(state._images, state._filteredImages));
       } else {
-        emit(ImagesUploadDenied(state._images));
+        emit(ImagesUploadDenied(state._images, state._filteredImages));
       }
     }
     return;
@@ -43,19 +43,19 @@ class ImagesCubit extends Cubit<ImagesState> {
       File file = File(image.path);
       _didUpload = await imageService.addPicture(false, file, number);
       if (_didUpload) {
-        emit(ImagesUploadSuccess(state._images));
+        emit(ImagesUploadSuccess(state._images, state._filteredImages));
       } else {
-        emit(ImagesUploadDenied(state._images));
+        emit(ImagesUploadDenied(state._images, state._filteredImages));
       }
     }
     return;
   }
 
   void fetchImageData() async {
-    emit(ImagesLoading(state._images));
+    emit(ImagesLoading(state._images, state._filteredImages));
     final rawImages = await imageService.getAllImages();
     if (rawImages.isEmpty) {
-      emit(ImagesInitial(state._images));
+      emit(ImagesInitial(state._images, state._filteredImages));
       return;
     }
     rawImages.forEach((key, value) {
@@ -66,46 +66,82 @@ class ImagesCubit extends Cubit<ImagesState> {
           isStencil: value['isStencil'],
           timeStamp: value['timeStamp']));
     });
-    emit(ImagesInitial(state._images));
+    emit(ImagesInitial(state._images, state._images));
   }
 
-  List<Image> showOnlyChristianTattoos() {
-    return state._images
-        .where((image) =>
-            image.author == Constants.artist['number'] &&
-            image.isStencil == false)
-        .toList();
+  void showOnlyChristianTattoos() {
+    emit(
+      ImagesInitial(
+        state._images,
+        state._images
+            .where((image) =>
+                image.author == Constants.artist['number'] &&
+                image.isStencil == false)
+            .toList(),
+      ),
+    );
   }
 
-  List<Image> showOnlyEmanuelTattoos() {
-    return state._images
-        .where((image) =>
-            image.author == Constants.artist2['number'] &&
-            image.isStencil == false)
-        .toList();
+  void showOnlyEmanuelTattoos() {
+    emit(
+      ImagesInitial(
+        state._images,
+        state._images
+            .where((image) =>
+                image.author == Constants.artist2['number'] &&
+                image.isStencil == false)
+            .toList(),
+      ),
+    );
   }
 
-  List<Image> showOnlyChristianStencils() {
-    return state._images
-        .where((image) =>
-            image.author == Constants.artist['number'] &&
-            image.isStencil == true)
-        .toList();
+  void showOnlyChristianStencils() {
+    emit(
+      ImagesInitial(
+        state._images,
+        state._images
+            .where((image) =>
+                image.author == Constants.artist['number'] &&
+                image.isStencil == true)
+            .toList(),
+      ),
+    );
   }
 
-  List<Image> showOnlyEmanuelStencils() {
-    return state._images
-        .where((image) =>
-            image.author == Constants.artist2['number'] &&
-            image.isStencil == true)
-        .toList();
+  void showOnlyEmanuelStencils() {
+    emit(
+      ImagesInitial(
+        state._images,
+        state._images
+            .where((image) =>
+                image.author == Constants.artist2['number'] &&
+                image.isStencil == true)
+            .toList(),
+      ),
+    );
   }
 
-  List<Image> showAllTattoos() {
-    return state._images.where((image) => image.isStencil == false).toList();
+  void showAllTattoos() {
+    emit(
+      ImagesInitial(
+        state._images,
+        state._images.where((image) => image.isStencil == false).toList(),
+      ),
+    );
   }
 
-  List<Image> showAllStencils() {
-    return state._images.where((image) => image.isStencil == true).toList();
+  void showAllStencils() {
+    emit(
+      ImagesInitial(
+        state._images,
+        state._images.where((image) => image.isStencil == true).toList(),
+      ),
+    );
+  }
+
+  void showEverything() {
+    emit(
+      ImagesInitial(state._images, state._images),
+    );
   }
 }
