@@ -1,7 +1,10 @@
 part of '../login.dart';
 
 class _RegisterationScene extends StatelessWidget {
-  const _RegisterationScene({Key? key, required this.bloc}) : super(key: key);
+  const _RegisterationScene({
+    Key? key,
+    required this.bloc,
+  }) : super(key: key);
 
   final AuthCubit bloc;
 
@@ -26,7 +29,7 @@ class _RegisterationScene extends StatelessWidget {
             height: 30,
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.6,
+            width: MediaQuery.of(context).size.width * 0.45,
             child: TextField(
               maxLength: 20,
               focusNode: bloc.focusNode,
@@ -83,7 +86,7 @@ class _RegisterationScene extends StatelessWidget {
           GoogleAuthButton(
             onPressed: () {},
             style: AuthButtonStyle(
-              width: MediaQuery.of(context).size.width * 0.65,
+              width: MediaQuery.of(context).size.width * 0.2,
               buttonColor: SixxColors.primary,
               textStyle: const TextStyle(
                 fontWeight: FontWeight.bold,

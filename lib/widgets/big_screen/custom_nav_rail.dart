@@ -26,9 +26,7 @@ class _CustomNavRailState extends State<CustomNavRail> {
         leading: BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
           return IconButton(
             onPressed: () {
-              if (state is! AuthAuthenticated) {
-                loginDialog(context);
-              }
+              loginDialog(context);
             },
             icon: const Icon(CustomIcons.logo),
             color: SixxColors.primary,

@@ -1,7 +1,10 @@
 part of '../login.dart';
 
 class _VerifyOTPScene extends StatelessWidget {
-  const _VerifyOTPScene({Key? key, required this.bloc}) : super(key: key);
+  const _VerifyOTPScene({
+    Key? key,
+    required this.bloc,
+  }) : super(key: key);
 
   final AuthCubit bloc;
 
@@ -26,6 +29,13 @@ class _VerifyOTPScene extends StatelessWidget {
                       ),
                     ),
                   ),
+                  if (bloc.incorrectPin)
+                    const Text(
+                      'Du slog in fel pin!',
+                      style: TextStyle(
+                        color: Colors.red,
+                      ),
+                    ),
                   Pinput(
                     controller: bloc.pinController,
                     length: 6,

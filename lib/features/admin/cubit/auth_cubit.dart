@@ -6,6 +6,8 @@ import '../../../app/constants.dart';
 
 part 'auth_state.dart';
 
+//Skriva om så state defaultar false på isLoading så blir det mindre kludd.
+
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial(false, false));
 
@@ -14,6 +16,8 @@ class AuthCubit extends Cubit<AuthState> {
   final focusNode = FocusNode();
   final pinController = TextEditingController(text: null);
   final phoneNumberController = TextEditingController(text: '+46');
+  bool incorrectPin = false;
+  bool completed = false;
 
   void checkIfAdmin() {
     if (FirebaseAuth.instance.currentUser != null) {
@@ -67,8 +71,10 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthAuthenticate(state.loading = true, state.isAdmin = false));
       await auth.signInWithCredential(credential);
       emit(AuthAuthenticated(state.loading = false, state.isAdmin = false));
+      completed = true;
     } catch (e) {
-      invalidPin(context);
+      incorrectPin = true;
+      emit(AuthAuthenticate(state.loading = false, state.isAdmin = false));
     }
   }
 
@@ -82,7 +88,8 @@ class AuthCubit extends Cubit<AuthState> {
       await auth.signInWithCredential(credential);
       emit(AuthAuthenticated(state.loading = false, state.isAdmin = false));
     } catch (e) {
-      invalidPin(context);
+      incorrectPin = true;
+      emit(AuthAuthenticate(state.loading = false, state.isAdmin = false));
     }
   }
 
@@ -102,12 +109,6 @@ class AuthCubit extends Cubit<AuthState> {
   void signOut() {
     auth.signOut();
     emit(AuthInitial(false, false));
-  }
-
-  void invalidPin(BuildContext context) {
-    pinController.text = '';
-    ScaffoldMessenger.of(context)
-        .showSnackBar(CustomSnackbar.snackBarInvalidPin);
   }
 
   dispose() {

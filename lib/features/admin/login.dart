@@ -10,6 +10,7 @@ import 'cubit/auth_cubit.dart';
 
 part 'components/registeration_scene.dart';
 part 'components/verify_otp_scene.dart';
+part 'components/logout_scene.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -22,7 +23,13 @@ class Login extends StatelessWidget {
       children: [
         BlocBuilder<AuthCubit, AuthState>(
           builder: (context, state) {
-            if (state is AuthAuthenticate) {
+            if (bloc.completed) {
+              Navigator.of(context).pop();
+            }
+
+            if (state is AuthAuthenticated) {
+              return _LogoutScene(bloc: bloc);
+            } else if (state is AuthAuthenticate) {
               return _VerifyOTPScene(bloc: bloc);
             } else {
               return _RegisterationScene(bloc: bloc);
