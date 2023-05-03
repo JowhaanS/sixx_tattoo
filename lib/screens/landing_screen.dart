@@ -96,7 +96,7 @@ class LandingScreen extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             }),
-      bottomNavigationBar: const CustomTabBar(),
+      bottomNavigationBar: isScreenBig ? null : const CustomTabBar(),
     );
   }
 }

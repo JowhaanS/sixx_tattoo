@@ -20,19 +20,22 @@ class GalleryScreen extends StatelessWidget {
                   decoration: BackgroundImage(isTransparent: true)
                       .backgroundDecoration(),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text('Gallery Loading...',
-                        style: TextStyle(
-                          color: SixxColors.secondary,
-                          fontSize: 36,
-                        )),
-                    CircularProgressIndicator(
-                      color: SixxColors.primary,
-                    )
-                  ],
+                SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text('Gallery Loading...',
+                          style: TextStyle(
+                            color: SixxColors.secondary,
+                            fontSize: 36,
+                          )),
+                      CircularProgressIndicator(
+                        color: SixxColors.primary,
+                      )
+                    ],
+                  ),
                 ),
               ])
             : const GalleryGrid();
