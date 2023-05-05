@@ -75,7 +75,7 @@ class _RegisterationScene extends StatelessWidget {
             AppleAuthButton(
               onPressed: () {},
               style: AuthButtonStyle(
-                width: MediaQuery.of(context).size.width * 0.65,
+                width: MediaQuery.of(context).size.width * 0.2,
                 buttonColor: SixxColors.primary,
                 textStyle: const TextStyle(
                   fontWeight: FontWeight.bold,
