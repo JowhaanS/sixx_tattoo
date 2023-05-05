@@ -2,9 +2,9 @@ part of '../login.dart';
 
 class _LogoutScene extends StatelessWidget {
   const _LogoutScene({
-    super.key,
+    Key? key,
     required this.bloc,
-  });
+  }) : super(key: key);
 
   final AuthCubit bloc;
 
