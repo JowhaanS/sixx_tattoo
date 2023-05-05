@@ -144,4 +144,8 @@ class ImagesCubit extends Cubit<ImagesState> {
       ImagesInitial(state._images, state._images),
     );
   }
+
+  Image findById(String id) {
+    return state._images.firstWhere((image) => image.id == id);
+  }
 }

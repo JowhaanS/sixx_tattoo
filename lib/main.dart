@@ -3,9 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:sixx_tattoo/app/constants.dart';
 import 'package:sixx_tattoo/cubits/navigation_cubit/navigation_cubit.dart';
 import 'package:sixx_tattoo/features/admin/cubit/auth_cubit.dart';
 import 'package:sixx_tattoo/features/gallery/images_cubit/images_cubit.dart';
+import 'package:sixx_tattoo/features/gallery/screen/gallery_detail_screen.dart';
 import 'firebase_options.dart';
 
 import 'screens/landing_screen.dart';
@@ -37,9 +39,18 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => ImagesCubit(),
         ),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: createMaterialColor(SixxColors.backGround),
+            backgroundColor: SixxColors.backGround,
+          ),
+        ),
         title: 'Sixx Tattoo',
-        home: LandingScreen(),
+        home: const LandingScreen(),
+        routes: {
+          GalleryDetailScreen.routeName: (ctx) => GalleryDetailScreen(),
+        },
       ),
     );
   }
