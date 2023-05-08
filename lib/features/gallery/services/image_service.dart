@@ -90,4 +90,20 @@ class ImageService {
     });
     return _data;
   }
+
+  Future<Map<dynamic, dynamic>> refreshImages() async {
+    final ref = database.ref();
+    await ref.child('images').once(DatabaseEventType.value).then((value) {
+      final rawData = value.snapshot.children.fold<Map<dynamic, dynamic>>(
+        {},
+        (Map<dynamic, dynamic> map, DataSnapshot childSnapshot) {
+          map[childSnapshot.key] = childSnapshot.value;
+          return map;
+        },
+      );
+      _data = rawData;
+      _itemsCounter = _data.length;
+    });
+    return _data;
+  }
 }

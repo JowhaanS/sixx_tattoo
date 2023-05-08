@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sixx_tattoo/app/constants.dart';
 import 'package:sixx_tattoo/features/gallery/screen/gallery_detail_screen.dart';
 import '../models/image.dart' as image_model;
 

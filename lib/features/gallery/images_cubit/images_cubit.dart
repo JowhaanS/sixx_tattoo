@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/material.dart' show ScrollController, Curves;
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sixx_tattoo/app/constants.dart';
@@ -13,7 +14,32 @@ class ImagesCubit extends Cubit<ImagesState> {
   final imagePicker = ImagePicker();
   late ImageService imageService = ImageService();
   XFile? pickedImage;
+  final ScrollController scrollController = ScrollController();
+
   ImagesCubit() : super(ImagesInitial([], []));
+
+  Future<void> refresh() async {
+    emit(ImagesLoading(state._images, state._filteredImages));
+    final rawImages = await imageService.refreshImages();
+    if (rawImages.isEmpty) {
+      emit(ImagesInitial(state._images, state._filteredImages));
+      return;
+    }
+    rawImages.forEach((key, value) {
+      final id = value['id'];
+      final index = state._images.indexWhere((image) => image.id == id);
+      if (index == -1) {
+        state._images.add(Image(
+          id: id,
+          author: value['author'],
+          imageUrl: value['imageUrl'],
+          isStencil: value['isStencil'],
+          timeStamp: value['timeStamp'],
+        ));
+      }
+    });
+    emit(ImagesInitial(state._images, state._images));
+  }
 
   Future<void> takePicture(String id, String number) async {
     final XFile? photo = await imagePicker.pickImage(
