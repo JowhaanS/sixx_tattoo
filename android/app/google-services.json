@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "821778987621-j0hes34ppe674f2vc0hfpoui590a7pga.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sixx_tattoo",
+            "certificate_hash": "6dbcd8d41a229dbb61b54de1942722d3c854a965"
+          }
+        },
+        {
           "client_id": "821778987621-8gr257b9n5dsmchc9n2c5a32s2pq26nu.apps.googleusercontent.com",
           "client_type": 3
         }

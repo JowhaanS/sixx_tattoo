@@ -62,6 +62,7 @@ class AddPictureScreen extends StatelessWidget {
               ),
               onPressed: () {
                 BlocProvider.of<ImagesCubit>(context).choosePicture(
+                  false,
                   BlocProvider.of<AuthCubit>(context).auth.currentUser!.uid,
                   BlocProvider.of<AuthCubit>(context)
                       .auth
@@ -114,6 +115,7 @@ class AddPictureScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     BlocProvider.of<ImagesCubit>(context).choosePicture(
+                      true,
                       BlocProvider.of<AuthCubit>(context).auth.currentUser!.uid,
                       BlocProvider.of<AuthCubit>(context)
                           .auth

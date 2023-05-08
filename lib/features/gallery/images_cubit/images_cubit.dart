@@ -33,7 +33,7 @@ class ImagesCubit extends Cubit<ImagesState> {
     return;
   }
 
-  Future<void> choosePicture(String id, String number) async {
+  Future<void> choosePicture(bool isStencil, String id, String number) async {
     final XFile? image = await imagePicker.pickImage(
       source: ImageSource.gallery,
       imageQuality: 50,
@@ -41,7 +41,7 @@ class ImagesCubit extends Cubit<ImagesState> {
     );
     if (image != null) {
       File file = File(image.path);
-      _didUpload = await imageService.addPicture(false, file, number);
+      _didUpload = await imageService.addPicture(isStencil, file, number);
       if (_didUpload) {
         emit(ImagesUploadSuccess(state._images, state._filteredImages));
       } else {

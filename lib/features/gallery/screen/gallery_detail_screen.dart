@@ -55,44 +55,67 @@ class GalleryDetailScreen extends StatelessWidget {
                     ? Column(
                         children: [
                           Text(
-                              'Om du är intresserad av denna hör av dig till: $_authorName på:'),
+                            'Om du är intresserad av denna hör av dig till\n $_authorName på:',
+                            style: const TextStyle(
+                              color: SixxColors.primary,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
                           InkWell(
                             onTap: () {
                               _makePhoneCall(loadedImage.author);
                             },
-                            child: Text(loadedImage.author),
+                            child: Text(
+                              loadedImage.author,
+                              style: const TextStyle(
+                                color: SixxColors.secondary,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 16,
                           )
                         ],
                       )
-                    : Text(
-                        'Gjord av: $_authorName',
-                        style: const TextStyle(
-                          color: SixxColors.primary,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
+                    : Column(
+                        children: [
+                          Text(
+                            'Gjord av: $_authorName',
+                            style: const TextStyle(
+                              color: SixxColors.primary,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            width: double.infinity,
+                            child: const Text(
+                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit,\n'
+                              'sed do eiusmod tempor incididunt ut labore et dolore magna\n'
+                              'aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n'
+                              'ullamco laboris nisi ut aliquip ex ea commodo consequat.\n'
+                              'Duis aute irure dolor in reprehenderit in voluptate velit\n'
+                              'esse cillum dolore eu fugiat nulla pariatur.\n'
+                              'Excepteur sint occaecat cupidatat non proident, sunt in culpa\n'
+                              'qui officia deserunt mollit anim id est laborum.',
+                              textAlign: TextAlign.center,
+                              softWrap: true,
+                              style: TextStyle(color: SixxColors.secondary),
+                            ),
+                          ),
+                        ],
                       ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  width: double.infinity,
-                  child: const Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit,\n'
-                    'sed do eiusmod tempor incididunt ut labore et dolore magna\n'
-                    'aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n'
-                    'ullamco laboris nisi ut aliquip ex ea commodo consequat.\n'
-                    'Duis aute irure dolor in reprehenderit in voluptate velit\n'
-                    'esse cillum dolore eu fugiat nulla pariatur.\n'
-                    'Excepteur sint occaecat cupidatat non proident, sunt in culpa\n'
-                    'qui officia deserunt mollit anim id est laborum.',
-                    textAlign: TextAlign.center,
-                    softWrap: true,
-                    style: TextStyle(color: SixxColors.secondary),
-                  ),
-                ),
               ],
             ),
           ),
