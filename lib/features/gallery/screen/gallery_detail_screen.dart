@@ -33,6 +33,15 @@ class GalleryDetailScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            leading: IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: SixxColors.primary,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
             expandedHeight: 700,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(

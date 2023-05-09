@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:flutter/material.dart' show ScrollController, Curves;
+import 'package:flutter/material.dart' show ScrollController;
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sixx_tattoo/app/constants.dart';
@@ -95,7 +95,7 @@ class ImagesCubit extends Cubit<ImagesState> {
     emit(ImagesInitial(state._images, state._images));
   }
 
-  void showOnlyChristianTattoos() {
+  void _showOnlyChristianTattoos() {
     emit(
       ImagesInitial(
         state._images,
@@ -108,7 +108,7 @@ class ImagesCubit extends Cubit<ImagesState> {
     );
   }
 
-  void showOnlyEmanuelTattoos() {
+  void _showOnlyEmanuelTattoos() {
     emit(
       ImagesInitial(
         state._images,
@@ -121,7 +121,7 @@ class ImagesCubit extends Cubit<ImagesState> {
     );
   }
 
-  void showOnlyChristianStencils() {
+  void _showOnlyChristianStencils() {
     emit(
       ImagesInitial(
         state._images,
@@ -134,7 +134,7 @@ class ImagesCubit extends Cubit<ImagesState> {
     );
   }
 
-  void showOnlyEmanuelStencils() {
+  void _showOnlyEmanuelStencils() {
     emit(
       ImagesInitial(
         state._images,
@@ -165,7 +165,7 @@ class ImagesCubit extends Cubit<ImagesState> {
     );
   }
 
-  void showEverything() {
+  void _showEverything() {
     emit(
       ImagesInitial(state._images, state._images),
     );
@@ -173,5 +173,25 @@ class ImagesCubit extends Cubit<ImagesState> {
 
   Image findById(String id) {
     return state._images.firstWhere((image) => image.id == id);
+  }
+
+  void setFilter(FilterOptions index) {
+    switch (index) {
+      case FilterOptions.emanuel:
+        _showOnlyEmanuelTattoos();
+        break;
+      case FilterOptions.christian:
+        _showOnlyChristianTattoos();
+        break;
+      case FilterOptions.all:
+        _showEverything();
+        break;
+      case FilterOptions.christianStencil:
+        _showOnlyChristianStencils();
+        break;
+      case FilterOptions.emanuelStencil:
+        _showOnlyEmanuelStencils();
+        break;
+    }
   }
 }
