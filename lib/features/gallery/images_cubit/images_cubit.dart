@@ -147,7 +147,7 @@ class ImagesCubit extends Cubit<ImagesState> {
     );
   }
 
-  void showAllTattoos() {
+  void _showAllTattoos() {
     emit(
       ImagesInitial(
         state._images,
@@ -156,7 +156,7 @@ class ImagesCubit extends Cubit<ImagesState> {
     );
   }
 
-  void showAllStencils() {
+  void _showAllStencils() {
     emit(
       ImagesInitial(
         state._images,
@@ -191,6 +191,12 @@ class ImagesCubit extends Cubit<ImagesState> {
         break;
       case FilterOptions.emanuelStencil:
         _showOnlyEmanuelStencils();
+        break;
+      case FilterOptions.tattoosOnly:
+        _showAllTattoos();
+        break;
+      case FilterOptions.stencilsOnly:
+        _showAllStencils();
         break;
     }
   }
