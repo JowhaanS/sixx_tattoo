@@ -13,8 +13,16 @@ enum FilterOptions {
 }
 
 class Constants {
-  static const artist = {'name': 'Christian', 'number': '+46761484739'};
-  static const artist2 = {'name': 'Emanuel', 'number': '+46701598058'};
+  static const artist = {
+    'name': 'Christian',
+    'number': '+46761484739',
+    'imageUrl': '',
+  };
+  static const artist2 = {
+    'name': 'Emanuel',
+    'number': '+46701598058',
+    'imageUrl': '',
+  };
   static const String adress = 'Bangårdsgatan 2, 534 30 Vara';
   static final Uri googleUriApple = Uri.parse(
       'https://maps.apple.com/?address=Bang%C3%A5rdsgatan%202,%20534%2030%20Vara,%20Sweden&ll=58.260833,12.950231&q=Bang%C3%A5rdsgatan%202');
