@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
         home: const LandingScreen(),
         routes: {
           GalleryDetailScreen.routeName: (ctx) => GalleryDetailScreen(),
-          ArtistDetailScreen.routeName: (ctx) => ArtistDetailScreen(),
+          ArtistDetailScreen.routeName: (ctx) => const ArtistDetailScreen(),
         },
       ),
     );

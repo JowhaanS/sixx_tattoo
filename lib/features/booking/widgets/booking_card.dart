@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sixx_tattoo/app/constants.dart';
 import 'package:sixx_tattoo/features/booking/screen/artist_detail_screen.dart';
 import 'package:sixx_tattoo/models/artist.dart';
 import 'package:sixx_tattoo/widgets/custom_button.dart';
@@ -12,10 +11,10 @@ class BookingCard extends StatelessWidget {
   });
   final Artist artist;
 
-  Future<void> _makePhoneCall(String phoneNumber) async {
+  Future<void> _makePhoneCall() async {
     final Uri launchUri = Uri(
       scheme: 'tel',
-      path: phoneNumber,
+      path: artist.number,
     );
     await launchUrl(launchUri);
   }
@@ -61,13 +60,11 @@ class BookingCard extends StatelessWidget {
                 children: [
                   CustomButton(
                     title: 'Call and book!',
-                    onPressed: () {
-                      _makePhoneCall;
-                    },
+                    onTapped: () => _makePhoneCall(),
                   ),
                   CustomButton(
                     title: 'Book online!',
-                    onPressed: () {},
+                    onTapped: () => print('Här ska kalendern visas'),
                   ),
                 ],
               ),

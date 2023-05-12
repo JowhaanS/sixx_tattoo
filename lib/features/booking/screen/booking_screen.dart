@@ -14,12 +14,37 @@ class BookingScreen extends StatelessWidget {
     return Stack(children: [
       Container(
         decoration: BackgroundImage(isTransparent: true).backgroundDecoration(),
-      ),
-      isScreenBig
-          ? SizedBox(
-              height: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: isScreenBig
+            ? SizedBox(
+                height: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    BookingCard(
+                      artist: Artist(
+                        name: Constants.artist['name']!,
+                        number: Constants.artist['number']!,
+                        image:
+                            const AssetImage('assets/images/placeholder.jpeg'),
+                      ),
+                    ),
+                    const VerticalDivider(
+                      thickness: 6,
+                      width: 6,
+                      color: SixxColors.primary,
+                    ),
+                    BookingCard(
+                      artist: Artist(
+                        name: Constants.artist2['name']!,
+                        number: Constants.artist2['number']!,
+                        image:
+                            const AssetImage('assets/images/placeholder.jpeg'),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            : Column(
                 children: [
                   BookingCard(
                     artist: Artist(
@@ -28,39 +53,16 @@ class BookingScreen extends StatelessWidget {
                       image: const AssetImage('assets/images/placeholder.jpeg'),
                     ),
                   ),
-                  const VerticalDivider(
-                    thickness: 6,
-                    width: 6,
-                    color: SixxColors.primary,
-                  ),
                   BookingCard(
                     artist: Artist(
                       name: Constants.artist2['name']!,
                       number: Constants.artist2['number']!,
                       image: const AssetImage('assets/images/placeholder.jpeg'),
                     ),
-                  )
+                  ),
                 ],
               ),
-            )
-          : Column(
-              children: const [
-                Text(
-                  'BOKA',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 218, 229, 221),
-                    fontSize: 36,
-                  ),
-                ),
-                Text(
-                  'BOKA',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 218, 229, 221),
-                    fontSize: 36,
-                  ),
-                ),
-              ],
-            )
+      ),
     ]);
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sixx_tattoo/app/constants.dart';
 import 'package:sixx_tattoo/features/admin/cubit/auth_cubit.dart';
 import 'package:sixx_tattoo/features/gallery/images_cubit/images_cubit.dart';
+import 'package:sixx_tattoo/widgets/custom_button.dart';
 
 import '../../../widgets/background_image.dart';
 
@@ -109,50 +110,23 @@ class AddPictureScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 50,
-                width: 150,
-                child: ElevatedButton(
-                  onPressed: () {
+              CustomButton(
+                title: 'Upload Stencil',
+                onTapped: () =>
                     BlocProvider.of<ImagesCubit>(context).choosePicture(
-                      true,
-                      BlocProvider.of<AuthCubit>(context).auth.currentUser!.uid,
-                      BlocProvider.of<AuthCubit>(context)
-                          .auth
-                          .currentUser!
-                          .phoneNumber!,
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: SixxColors.primary),
-                  child: const Text(
-                    'Upload Stencil',
-                    style: TextStyle(
-                      color: SixxColors.secondary,
-                    ),
-                  ),
+                  true,
+                  BlocProvider.of<AuthCubit>(context).auth.currentUser!.uid,
+                  BlocProvider.of<AuthCubit>(context)
+                      .auth
+                      .currentUser!
+                      .phoneNumber!,
                 ),
               ),
               const SizedBox(
                 height: 40,
               ),
-              SizedBox(
-                height: 50,
-                width: 150,
-                child: ElevatedButton(
-                  onPressed: () {
-                    _showDialog(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: SixxColors.primary),
-                  child: const Text(
-                    'Upload Tattoo',
-                    style: TextStyle(
-                      color: SixxColors.secondary,
-                    ),
-                  ),
-                ),
-              ),
+              CustomButton(
+                  title: 'Upload Tattoo', onTapped: () => _showDialog(context)),
               const SizedBox(
                 height: 100,
               )

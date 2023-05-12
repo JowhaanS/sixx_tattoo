@@ -4,11 +4,11 @@ import 'package:sixx_tattoo/app/constants.dart';
 class CustomButton extends StatelessWidget {
   const CustomButton({
     required this.title,
-    required this.onPressed,
+    required this.onTapped,
     super.key,
   });
   final String title;
-  final VoidCallback onPressed;
+  final VoidCallback onTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class CustomButton extends StatelessWidget {
       width: 150,
       child: ElevatedButton(
         onPressed: () {
-          onPressed;
+          onTapped();
         },
         style: ElevatedButton.styleFrom(backgroundColor: SixxColors.primary),
         child: Text(
