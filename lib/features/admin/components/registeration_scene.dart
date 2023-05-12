@@ -84,7 +84,13 @@ class _RegisterationScene extends StatelessWidget {
               ),
             ),
           GoogleAuthButton(
-            onPressed: () {},
+            onPressed: () {
+              if (defaultTargetPlatform == TargetPlatform.android) {
+                bloc.signInWithGoogle();
+              } else {
+                bloc.signInWithGoogleOnWeb();
+              }
+            },
             style: AuthButtonStyle(
               width: MediaQuery.of(context).size.width * 0.2,
               buttonColor: SixxColors.primary,
