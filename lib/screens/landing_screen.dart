@@ -108,7 +108,7 @@ class LandingScreen extends StatelessWidget {
                         PopupMenuItem(
                           value: FilterOptions.emanuelStencil,
                           child: Text(
-                            'Stencils by Emanuel',
+                            'Stencils of Emanuel',
                             style: TextStyle(
                               color: SixxColors.secondary,
                               fontSize: 18,

@@ -85,7 +85,8 @@ class _RegisterationScene extends StatelessWidget {
             ),
           GoogleAuthButton(
             onPressed: () {
-              if (defaultTargetPlatform == TargetPlatform.android) {
+              if (defaultTargetPlatform == TargetPlatform.android ||
+                  defaultTargetPlatform == TargetPlatform.iOS) {
                 bloc.signInWithGoogle();
               } else {
                 bloc.signInWithGoogleOnWeb();
