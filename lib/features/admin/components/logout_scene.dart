@@ -29,8 +29,8 @@ class _LogoutScene extends StatelessWidget {
             width: 150,
             child: ElevatedButton(
               onPressed: () {
-                bloc.signOut();
                 Navigator.of(context).pop();
+                bloc.signOut();
               },
               style:
                   ElevatedButton.styleFrom(backgroundColor: SixxColors.primary),

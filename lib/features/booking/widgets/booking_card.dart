@@ -64,7 +64,7 @@ class BookingCard extends StatelessWidget {
                   ),
                   CustomButton(
                     title: 'Book online!',
-                    onTapped: () => print('Här ska kalendern visas'),
+                    onTapped: () {},
                   ),
                 ],
               ),
